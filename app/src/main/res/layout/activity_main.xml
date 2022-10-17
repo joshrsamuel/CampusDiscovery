@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/LoginBackground"
+    android:background="@drawable/loginbackground"
     tools:context=".MainActivity">
 
     <TextView
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/logInButton"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="85dp"
+        android:layout_marginLeft="80dp"
         android:text="New to Campus Discovery?"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/registerLink"
@@ -97,7 +97,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/logInButton"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="85dp"
+        android:layout_marginRight="80dp"
         android:text="Register"
         app:layout_constraintLeft_toRightOf="@id/newAcct"
         app:layout_constraintRight_toRightOf="parent"
