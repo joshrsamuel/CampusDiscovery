@@ -28,8 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="times"
-                android:text="Faculty Events"
-                android:textAlignment="center"
+                android:text="Admin Dashboard"
+                android:gravity="end"
                 android:textColor="@color/white"
                 android:textSize="23sp"
                 android:textStyle="bold">
