@@ -54,16 +54,6 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/eventHost"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingBottom="10dp"
-                android:text="@string/event_host_placeholder"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-
-            <TextView
                 android:id="@+id/eventDes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
