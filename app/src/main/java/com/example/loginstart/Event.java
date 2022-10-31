@@ -30,15 +30,19 @@ public class Event {
     public userInfo getHost() {
         return host;
     }
+
     public String getEventDescription() {
         return eventDescription;
     }
+
     public String getLocation() {
         return location;
     }
+
     public String getTime() {
         return time;
     }
+
     public void setTitle(String newTitle) {
         title = newTitle;
     }
@@ -46,12 +50,15 @@ public class Event {
     public void setHost(userInfo newHost) {
         host = newHost;
     }
+
     public void setEventDescription(String newEventDescription) {
         eventDescription = newEventDescription;
     }
+
     public void setLocation(String newLocation) {
         location = newLocation;
     }
+
     public void setTime(String newTime) {
         time = newTime;
     }
