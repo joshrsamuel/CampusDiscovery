@@ -24,12 +24,12 @@
             android:background="@drawable/gradient_1">
 
             <TextView
-                android:id="@+id/studHeader"
+                android:id="@+id/eventHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="times"
-                android:text="Student Dashboard"
                 android:gravity="end"
+                android:text="Student Dashboard"
                 android:textColor="@color/white"
                 android:textSize="23sp"
                 android:textStyle="bold">
@@ -50,7 +50,7 @@
         android:textSize="15sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/studHeader"
+        app:layout_constraintRight_toLeftOf="@id/eventHeader"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         tools:ignore="NotSibling" />
@@ -67,4 +67,5 @@
         app:layout_constraintTop_toBottomOf="@+id/appbar"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/ic_input_add" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
