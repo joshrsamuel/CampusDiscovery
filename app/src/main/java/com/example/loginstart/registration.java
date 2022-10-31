@@ -22,8 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class registration extends AppCompatActivity {
     private TextView titlebanner;
-    private EditText name, email, password;
+    private EditText name, email, password, adminCode;
     private RadioButton userType;
+    private RadioButton adminBtn;
     private RadioGroup userOpt;
     private Button signUp;
     private FirebaseAuth authorizer;
@@ -39,11 +40,18 @@ public class registration extends AppCompatActivity {
         email = (EditText) findViewById(R.id.emailC);
         password = (EditText) findViewById(R.id.passwordC);
         userOpt = (RadioGroup) findViewById(R.id.userType);
+        adminBtn = (RadioButton) findViewById(R.id.adminB);
+        adminBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adminCode = (EditText) findViewById(R.id.admin);
+                adminCode.setVisibility(View.VISIBLE);
+            }
+        });
         exitBtn = (Button) findViewById(R.id.quit);
         exitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("FIRED");
                 startActivity(new Intent(registration.this, MainActivity.class));
             }
         });
@@ -53,7 +61,16 @@ public class registration extends AppCompatActivity {
             public void onClick(View view) {
                 if (userOpt.getCheckedRadioButtonId() != -1) {
                     userType = (RadioButton) findViewById(userOpt.getCheckedRadioButtonId());
-                    register();
+                    if (userType.getText().toString().equals("Admin")) {
+                        adminCode = (EditText) findViewById(R.id.admin);
+                        if (adminCode.getText().toString().equals("1347MIRAJ")) {
+                            register();
+                        } else {
+                            Toast.makeText(registration.this, "Invalid code. Try Again.", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        register();
+                    }
                 }
             }
         });

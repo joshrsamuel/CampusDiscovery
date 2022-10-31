@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="times"
-                android:text="Admin Dashboard"
+                android:text="Faculty Dashboard"
                 android:gravity="end"
                 android:textColor="@color/white"
                 android:textSize="23sp"
@@ -53,6 +53,19 @@
         app:layout_constraintRight_toLeftOf="@+id/facHeader"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
-        />
+        tools:ignore="NotSibling" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/facultyCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/ic_input_add" />
 </androidx.constraintlayout.widget.ConstraintLayout>
