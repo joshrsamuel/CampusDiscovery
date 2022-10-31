@@ -77,7 +77,7 @@ public class welcome extends AppCompatActivity {
                         delay.cancel();
                         startActivity(new Intent(welcome.this, teacher.class));
                         break;
-                    case "Event Organizer":
+                    case "Admin":
                         delay.cancel();
                         startActivity(new Intent(welcome.this, organizer.class));
                         break;
