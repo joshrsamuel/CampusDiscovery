@@ -10,4 +10,7 @@
     <color name="olympic_teal">#008C95</color>
     <color name="tech_gold">#B3A369</color>
     <color name="tech_blue">#003057</color>
+    <color name="tech_lime">#A4D233</color>
+    <color name="tech_bright_lime">#00EC9C</color>
+
 </resources>

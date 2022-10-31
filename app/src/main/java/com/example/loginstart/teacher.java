@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class teacher extends AppCompatActivity {
     private Button exitBtn;
+    private FloatingActionButton createEventBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +21,14 @@ public class teacher extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(teacher.this, MainActivity.class));
+            }
+        });
+
+        createEventBtn = (FloatingActionButton) findViewById(R.id.facultyCreate);
+        createEventBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(teacher.this, createEvent.class).putExtra("class", "teacher"));
             }
         });
     }

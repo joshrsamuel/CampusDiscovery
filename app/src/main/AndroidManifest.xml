@@ -42,6 +42,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".createEvent"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".registration"
             android:exported="false">
             <meta-data
