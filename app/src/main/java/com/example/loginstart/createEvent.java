@@ -5,18 +5,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class createEvent extends AppCompatActivity {
     private EditText title;
-    private EditText host;
     private EditText eventDescription;
     private EditText location;
     private EditText time;
-    private String txtTitle, txtHost, txtEventDescription, txtLocation, txtTime;
+    private String txtTitle, txtEventDescription, txtLocation, txtTime;
     private Button createBtn;
     private Button returnToDashBtn;
+    private Event created;
+    private FirebaseUser currUser;
+    private DatabaseReference mirajDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +35,6 @@ public class createEvent extends AppCompatActivity {
         setContentView(R.layout.activity_create_event);
 
         title = (EditText) findViewById(R.id.title);
-        host = (EditText) findViewById(R.id.host);
         eventDescription = (EditText) findViewById(R.id.eventDescription);
         location = (EditText) findViewById(R.id.location);
         time = (EditText) findViewById(R.id.time);
@@ -34,7 +44,7 @@ public class createEvent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String caller = getIntent().getStringExtra("class");
-
+                System.out.println("Return registered");
                 switch (caller) {
                     case "student":
                         startActivity(new Intent(createEvent.this, student.class));
@@ -50,11 +60,24 @@ public class createEvent extends AppCompatActivity {
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("Create registered");
                 txtTitle = title.getText().toString().trim();
-                txtHost = host.getText().toString().trim();
                 txtEventDescription = eventDescription.getText().toString().trim();
                 txtLocation = location.getText().toString().trim();
                 txtTime = time.getText().toString().trim();
+                currUser = FirebaseAuth.getInstance().getCurrentUser();
+                created = new Event(txtTitle, currUser, txtEventDescription, txtLocation, txtTime);
+                mirajDatabase = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("Events");
+                mirajDatabase.child(created.toString()).setValue(created).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(createEvent.this, "Successfully created.", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(createEvent.this, "Error. Try Again.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
             }
         });
 

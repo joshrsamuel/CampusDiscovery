@@ -74,29 +74,19 @@
             android:gravity="center"
             android:textColorHint="@color/white"
             android:textColor="@color/tech_bright_lime"
-            android:layout_margin="20sp">
-        </EditText>
-
-        <EditText
-            android:id="@+id/host"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:hint="Host"
-            android:gravity="center"
-            android:textColorHint="@color/white"
-            android:textColor="@color/tech_bright_lime"
-            android:layout_margin="20sp">
+            android:layout_margin="20sp"
+            android:layout_marginTop="40sp">
         </EditText>
 
         <EditText
             android:id="@+id/eventDescription"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:hint="Event Description"
             android:gravity="center"
             android:textColorHint="@color/white"
             android:textColor="@color/tech_bright_lime"
-            android:layout_margin="20sp">
+            android:layout_margin="10sp">
         </EditText>
 
         <EditText
