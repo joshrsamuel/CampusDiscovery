@@ -5,12 +5,12 @@ import com.google.firebase.auth.UserInfo;
 
 public class Event {
     public String title;
-    public userInfo host;
+    public String host;
     public String eventDescription;
     public String location;
     public String time;
 
-    public Event(String title, userInfo host, String eventDescription, String location, String time) {
+    public Event(String title, String host, String eventDescription, String location, String time) {
         this.title = title;
         this.host = host;
         this.eventDescription = eventDescription;
@@ -27,7 +27,7 @@ public class Event {
         return title;
     }
 
-    public userInfo getHost() {
+    public String getHost() {
         return host;
     }
 
@@ -47,7 +47,7 @@ public class Event {
         title = newTitle;
     }
 
-    public void setHost(userInfo newHost) {
+    public void setHost(String newHost) {
         host = newHost;
     }
 
