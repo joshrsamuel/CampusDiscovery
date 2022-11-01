@@ -58,7 +58,7 @@ public class teacher extends AppCompatActivity {
                 RecyclerViewAdapter adapter = new RecyclerViewAdapter(childData, context);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                Toast.makeText(teacher.this, "Successfully added.", Toast.LENGTH_LONG).show();
+                Toast.makeText(teacher.this, "Events successfully loaded.", Toast.LENGTH_LONG).show();
             }
 
             @Override
