@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     ArrayList<DataSnapshot> data;
     Context context;
+    private final int limit = 10;
     public RecyclerViewAdapter(ArrayList<DataSnapshot> data, Context context) {
         this.data = data;
         this.context = context;
@@ -33,7 +34,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.title.setText(data.get(position).child("title").getValue(String.class));
-        System.out.println(data.get(position).child("title").getValue(String.class));
         holder.date.setText(data.get(position).child("time").getValue(String.class));
         holder.location.setText(data.get(position).child("location").getValue(String.class));
         holder.description.setText(data.get(position).child("eventDescription").getValue(String.class));
@@ -41,7 +41,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return data.size();
+        if (data.size() > limit) {
+            return limit;
+        } else {
+            return data.size();
+        }
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
