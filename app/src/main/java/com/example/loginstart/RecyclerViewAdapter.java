@@ -59,6 +59,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView title, date, location, description, host;
         FirebaseUser currUser;
         Button removeEvent;
+        Button editEvent;
         DatabaseReference mirajDatabase = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("Events");
 
         public MyViewHolder(@NonNull View itemView) {
@@ -72,22 +73,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             currUser = FirebaseAuth.getInstance().getCurrentUser();
 
+            //Edit Button
+            editEvent = itemView.findViewById(R.id.editEvent);
+
+            // Remove Button
             removeEvent = itemView.findViewById(R.id.removeEvent);
 
-            /*
-            System.out.println("host: " + host.getText().toString());
-            System.out.println("curr user: " + currUser.getUid());
-            System.out.println(title.getText().toString());
-            if (!(host.getText().toString().equals(currUser.getUid()))) {
-                removeEvent.setVisibility(View.GONE);
-            }
-
-             */
+            //Button Visibility
             mirajDatabase.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (!(host.getText().toString().equals(currUser.getUid()))) {
                         removeEvent.setVisibility(View.GONE);
+                        editEvent.setVisibility(View.GONE);
                     }
                 }
 
@@ -97,6 +95,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 }
             });
 
+            // Remove functionality
             removeEvent.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
