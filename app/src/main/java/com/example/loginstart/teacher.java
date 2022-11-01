@@ -47,10 +47,10 @@ public class teacher extends AppCompatActivity {
             }
         });
         mirajDatabase = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("Events");
-        ArrayList<DataSnapshot> childData= new ArrayList<>();
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<DataSnapshot> childData= new ArrayList<>();
                 for (DataSnapshot child : snapshot.getChildren()) {
                     childData.add(child);
                 }
