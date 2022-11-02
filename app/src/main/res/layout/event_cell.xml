@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="match_parent"
-        android:layout_height="340dp"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@color/tech_blue"
         app:cardCornerRadius="15dp"
@@ -69,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="visible"
                 android:gravity="center"
+                android:paddingBottom="10dp"
                 android:text="Event Host Placeholder"
                 android:textColor="@color/white"
                 android:textSize="24sp"/>
