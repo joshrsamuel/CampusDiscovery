@@ -66,6 +66,9 @@ public class student extends AppCompatActivity {
                 }
                 int currChild = 0;
                 int pageNum = 1;
+                if (numPages == 0) {
+                    pages.add(new Page(childData, pageNum));
+                }
                 for (int i = 0; i < numPages; i++) {
                     if (i == numPages - 1) {
                         pages.add(new Page(childData.subList(currChild, childData.size()), pageNum));
