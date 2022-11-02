@@ -74,9 +74,9 @@ public class createEvent extends AppCompatActivity {
                         Toast.makeText(createEvent.this, "ERROR", Toast.LENGTH_LONG).show();
                     }
                 });
-                created = new Event(txtTitle, currUserInfo, txtEventDescription, txtLocation, txtTime);
+                created = new Event(txtTitle, currUser.getUid(), txtEventDescription, txtLocation, txtTime);
                 mirajDatabase = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("Events");
-                mirajDatabase.child(created.toString()).setValue(created).addOnCompleteListener(new OnCompleteListener<Void>() {
+                mirajDatabase.child(txtTitle).setValue(created).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
