@@ -10,9 +10,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +30,9 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
     private Button exitBtn;
     private FloatingActionButton createEventBtn;
     private DatabaseReference mirajDatabase;
+    private FirebaseUser currUser;
+    private TextView dashboardHeader;
+    private userInfo currUserInfo;
     private Button nextBtn;
     private Button backBtn;
 
@@ -34,6 +41,27 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
         Context context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
+        mirajDatabase = FirebaseDatabase.getInstance().getReference("UserInfo");
+        currUser = FirebaseAuth.getInstance().getCurrentUser();
+        mirajDatabase.child(currUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                currUserInfo = snapshot.getValue(userInfo.class);
+                if (currUserInfo != null) {
+                    if (currUserInfo.getUserType().equals("Admin")) {
+                        dashboardHeader = (TextView)  findViewById(R.id.eventHeader);
+                        dashboardHeader.setText("Admin Dashboard");
+                        FloatingActionButton tempBtn = (FloatingActionButton) findViewById(R.id.studentCreate);
+                        tempBtn.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         exitBtn = (Button) findViewById(R.id.quit);
         exitBtn.setOnClickListener(new View.OnClickListener() {
             @Override

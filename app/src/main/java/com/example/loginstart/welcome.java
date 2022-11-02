@@ -79,7 +79,7 @@ public class welcome extends AppCompatActivity {
                         break;
                     case "Admin":
                         delay.cancel();
-                        startActivity(new Intent(welcome.this, organizer.class));
+                        startActivity(new Intent(welcome.this, student.class));
                         break;
                 }
             }
