@@ -63,6 +63,12 @@
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
+            <TextView
+                android:id="@+id/eventHost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
+
             <Button
                 android:id="@+id/editEvent"
                 android:layout_width="match_parent"
