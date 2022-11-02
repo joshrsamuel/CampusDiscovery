@@ -13,12 +13,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
-    ArrayList<DataSnapshot> data;
-    Context context;
+    private List<DataSnapshot> data;
+    private Context context;
     private final int limit = 10;
-    public RecyclerViewAdapter(ArrayList<DataSnapshot> data, Context context) {
+    public RecyclerViewAdapter(List<DataSnapshot> data, Context context) {
         this.data = data;
         this.context = context;
     }
@@ -43,10 +44,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public int getItemCount() {
         if (data.size() > limit) {
             return limit;
+
         } else {
             return data.size();
         }
     }
+
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title, date, location, description;
