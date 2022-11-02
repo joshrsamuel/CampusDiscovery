@@ -53,6 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.date.setText(data.get(position).child("time").getValue(String.class));
         holder.location.setText(data.get(position).child("location").getValue(String.class));
         holder.description.setText(data.get(position).child("eventDescription").getValue(String.class));
+        holder.editorId = data.get(position).child("host").getValue(String.class);
         userDatabase = FirebaseDatabase.getInstance().getReference("UserInfo");
         userDatabase.child(data.get(position).child("host").getValue(String.class)).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -76,10 +77,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder  {
         TextView title, date, location, description, host;
+        String editorId;
+        String userType;
         FirebaseUser currUser;
         Button removeEvent;
         Button editEvent;
         DatabaseReference mirajDatabase = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("Events");
+        DatabaseReference mirajUsers = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("UserInfo");
 
         public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
@@ -91,6 +95,39 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             host = itemView.findViewById(R.id.eventHost);
 
             currUser = FirebaseAuth.getInstance().getCurrentUser();
+            mirajUsers.child(currUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    userInfo temp = snapshot.getValue(userInfo.class);
+                    if (temp != null) {
+                        userType = temp.getUserType();
+                    }
+                    mirajDatabase.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            System.out.println("Host of event: " + host.getText().toString());
+                            System.out.println("Curr user: " + currUser.getUid());
+                            if (!(editorId.equals(currUser.getUid()))) {
+                                removeEvent.setVisibility(View.GONE);
+                                editEvent.setVisibility(View.GONE);
+                            }
+                            if (userType != null && userType.equals("Admin")) {
+                                removeEvent.setVisibility(View.VISIBLE);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            System.out.println("Failed");
+                        }
+                    });
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
 
             //Edit Button
             editEvent = itemView.findViewById(R.id.editEvent);
@@ -99,14 +136,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             removeEvent = itemView.findViewById(R.id.removeEvent);
 
             //Button Visibility
-            mirajDatabase.addValueEventListener(new ValueEventListener() {
+            /*mirajDatabase.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     System.out.println("Host of event: " + host.getText().toString());
                     System.out.println("Curr user: " + currUser.getUid());
-                    if (!(host.getText().toString().equals(currUser.getUid()))) {
+                    if (!(editorId.equals(currUser.getUid()))) {
                         removeEvent.setVisibility(View.GONE);
                         editEvent.setVisibility(View.GONE);
+                    }
+                    if (userType != null && userType.equals("Admin")) {
+                        removeEvent.setVisibility(View.VISIBLE);
                     }
                 }
 
@@ -114,7 +154,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 public void onCancelled(@NonNull DatabaseError error) {
                     System.out.println("Failed");
                 }
-            });
+            }); */
 
             // Remove functionality
             removeEvent.setOnClickListener(new View.OnClickListener() {
