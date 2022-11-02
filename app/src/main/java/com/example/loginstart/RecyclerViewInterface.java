@@ -2,8 +2,8 @@ package com.example.loginstart;
 
 import com.google.firebase.database.DataSnapshot;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface RecyclerViewInterface {
-    void onClickEdit(ArrayList<DataSnapshot> data, int position);
+    void onClickEdit(List<DataSnapshot> data, int position);
 }

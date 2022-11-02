@@ -24,14 +24,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     private final RecyclerViewInterface recyclerViewInterface;
 
-    ArrayList<DataSnapshot> data;
+    List<DataSnapshot> data;
     Context context;
-    public RecyclerViewAdapter(ArrayList<DataSnapshot> data, Context context, RecyclerViewInterface recyclerViewInterface) {
+    public RecyclerViewAdapter(List<DataSnapshot> data, Context context, RecyclerViewInterface recyclerViewInterface) {
         this.data = data;
         this.context = context;
         this.recyclerViewInterface = recyclerViewInterface;
@@ -48,7 +48,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.title.setText(data.get(position).child("title").getValue(String.class));
-        System.out.println(data.get(position).child("title").getValue(String.class));
         holder.date.setText(data.get(position).child("time").getValue(String.class));
         holder.location.setText(data.get(position).child("location").getValue(String.class));
         holder.description.setText(data.get(position).child("eventDescription").getValue(String.class));
@@ -88,6 +87,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             mirajDatabase.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    System.out.println("Host of event: " + host.getText().toString());
+                    System.out.println("Curr user: " + currUser.getUid());
                     if (!(host.getText().toString().equals(currUser.getUid()))) {
                         removeEvent.setVisibility(View.GONE);
                         editEvent.setVisibility(View.GONE);
