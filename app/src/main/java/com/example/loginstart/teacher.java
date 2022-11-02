@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -52,10 +51,10 @@ public class teacher extends AppCompatActivity {
         ArrayList<DataSnapshot> childData= new ArrayList<>();
         ArrayList<Page> pages = new ArrayList<>();
         final int[] currPage = new int[1];
+        currPage[0] = 0;
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                currPage[0] = 0;
                 for (DataSnapshot child : snapshot.getChildren()) {
                     childData.add(child);
                 }

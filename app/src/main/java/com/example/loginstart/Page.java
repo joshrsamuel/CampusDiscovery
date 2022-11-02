@@ -9,7 +9,6 @@ public class Page {
     private List<DataSnapshot> data;
     private int pageNum;
     private final int maxSize = 10;
-    private static int NumPages = 0;
     public Page(List<DataSnapshot> data, int pageNum) {
         this.data = data;
         this.pageNum = pageNum;
@@ -31,11 +30,4 @@ public class Page {
         this.data = data;
     }
 
-    public static int getNumPages() {
-        return NumPages;
-    }
-
-    public static void setNumPages(int numPages) {
-        NumPages = numPages;
-    }
 }

@@ -18,7 +18,6 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
     private List<DataSnapshot> data;
     private Context context;
-    private final int limit = 10;
     public RecyclerViewAdapter(List<DataSnapshot> data, Context context) {
         this.data = data;
         this.context = context;
@@ -42,12 +41,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        if (data.size() > limit) {
-            return limit;
-
-        } else {
             return data.size();
-        }
     }
 
 
