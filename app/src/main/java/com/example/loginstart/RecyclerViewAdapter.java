@@ -31,6 +31,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     List<DataSnapshot> data;
     Context context;
+    DatabaseReference userDatabase;
+    userInfo eventHost;
     public RecyclerViewAdapter(List<DataSnapshot> data, Context context, RecyclerViewInterface recyclerViewInterface) {
         this.data = data;
         this.context = context;
@@ -51,7 +53,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.date.setText(data.get(position).child("time").getValue(String.class));
         holder.location.setText(data.get(position).child("location").getValue(String.class));
         holder.description.setText(data.get(position).child("eventDescription").getValue(String.class));
-        holder.host.setText(data.get(position).child("host").getValue(String.class));
+        userDatabase = FirebaseDatabase.getInstance().getReference("UserInfo");
+        userDatabase.child(data.get(position).child("host").getValue(String.class)).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                eventHost = snapshot.getValue(userInfo.class);
+                if (eventHost !=null) {
+                    holder.host.setText(eventHost.getFullName());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     @Override
