@@ -1,6 +1,8 @@
 package com.example.loginstart;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +27,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+    private final RecyclerViewInterface recyclerViewInterface;
+
     ArrayList<DataSnapshot> data;
     Context context;
-    public RecyclerViewAdapter(ArrayList<DataSnapshot> data, Context context) {
+    public RecyclerViewAdapter(ArrayList<DataSnapshot> data, Context context, RecyclerViewInterface recyclerViewInterface) {
         this.data = data;
         this.context = context;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
     @NonNull
     @Override
@@ -37,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.event_cell, parent, false);
 
-        return new RecyclerViewAdapter.MyViewHolder(view);
+        return new RecyclerViewAdapter.MyViewHolder(view, recyclerViewInterface);
     }
 
     @Override
@@ -55,14 +60,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return data.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder  {
         TextView title, date, location, description, host;
         FirebaseUser currUser;
         Button removeEvent;
         Button editEvent;
         DatabaseReference mirajDatabase = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("Events");
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
 
             title = itemView.findViewById(R.id.eventTitle);
@@ -100,6 +105,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onClick(View view) {
                     mirajDatabase.child(title.getText().toString()).removeValue();
+                }
+            });
+
+            // Edit functionality
+            editEvent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (recyclerViewInterface != null) {
+                        int position = getAdapterPosition();
+
+                        if (position != RecyclerView.NO_POSITION) {
+                            recyclerViewInterface.onClickEdit(data, position);
+                        }
+                    }
                 }
             });
         }

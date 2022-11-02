@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class teacher extends AppCompatActivity {
+public class teacher extends AppCompatActivity implements RecyclerViewInterface {
     private Button exitBtn;
     private FloatingActionButton createEventBtn;
     private DatabaseReference mirajDatabase;
@@ -55,7 +55,7 @@ public class teacher extends AppCompatActivity {
                     childData.add(child);
                 }
                 RecyclerView recyclerView = findViewById(R.id.recycleviewfaculty);
-                RecyclerViewAdapter adapter = new RecyclerViewAdapter(childData, context);
+                RecyclerViewAdapter adapter = new RecyclerViewAdapter(childData, context, teacher.this);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 Toast.makeText(teacher.this, "Events successfully loaded.", Toast.LENGTH_LONG).show();
@@ -72,5 +72,17 @@ public class teacher extends AppCompatActivity {
     private void exitApp() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onClickEdit(ArrayList<DataSnapshot> data, int position) {
+        Intent edit = new Intent(this, editEvent.class);
+        edit.putExtra("title", data.get(position).child("title").getValue(String.class));
+        edit.putExtra("description", data.get(position).child("eventDescription").getValue(String.class));
+        edit.putExtra("location", data.get(position).child("location").getValue(String.class));
+        edit.putExtra("time", data.get(position).child("time").getValue(String.class));
+        edit.putExtra("host", data.get(position).child("host").getValue(String.class));
+        edit.putExtra("class", "teacher");
+        startActivity(edit);
     }
 }

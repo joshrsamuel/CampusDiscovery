@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class student extends AppCompatActivity {
+public class student extends AppCompatActivity implements RecyclerViewInterface {
     private Button exitBtn;
     private FloatingActionButton createEventBtn;
     private DatabaseReference mirajDatabase;
@@ -47,17 +47,20 @@ public class student extends AppCompatActivity {
         });
         mirajDatabase = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("Events");
 
+        ArrayList<DataSnapshot> childData = new ArrayList<>();
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<DataSnapshot> childData= new ArrayList<>();
+                ArrayList<DataSnapshot> childData = new ArrayList<>();
                 for (DataSnapshot child : snapshot.getChildren()) {
                     childData.add(child);
                 }
                 RecyclerView recyclerView = findViewById(R.id.recycleviewstudent);
-                RecyclerViewAdapter adapter = new RecyclerViewAdapter(childData, context);
+                RecyclerViewAdapter adapter = new RecyclerViewAdapter(childData, context, student.this);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+
                 Toast.makeText(student.this, "Events successfully loaded.", Toast.LENGTH_LONG).show();
             }
 
@@ -65,11 +68,25 @@ public class student extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(student.this, "Error. Try Again.", Toast.LENGTH_LONG).show();
             }
+
         };
         mirajDatabase.addValueEventListener(postListener);
     }
+
     private void exitApp() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onClickEdit(ArrayList<DataSnapshot> data, int position) {
+        Intent edit = new Intent(this, editEvent.class);
+        edit.putExtra("title", data.get(position).child("title").getValue(String.class));
+        edit.putExtra("description", data.get(position).child("eventDescription").getValue(String.class));
+        edit.putExtra("location", data.get(position).child("location").getValue(String.class));
+        edit.putExtra("time", data.get(position).child("time").getValue(String.class));
+        edit.putExtra("host", data.get(position).child("host").getValue(String.class));
+        edit.putExtra("class", "student");
+        startActivity(edit);
     }
 }
