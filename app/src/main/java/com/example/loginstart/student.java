@@ -51,6 +51,8 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                     if (currUserInfo.getUserType().equals("Admin")) {
                         dashboardHeader = (TextView)  findViewById(R.id.eventHeader);
                         dashboardHeader.setText("Admin Dashboard");
+                        FloatingActionButton tempBtn = (FloatingActionButton) findViewById(R.id.studentCreate);
+                        tempBtn.setVisibility(View.GONE);
                     }
                 }
             }
