@@ -12,7 +12,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="990cb897-73c9-4ef9-8177-697676a44775" name="Changes" comment="Making events clickable which redirects user to the RSVP page." />
+    <list default="true" id="990cb897-73c9-4ef9-8177-697676a44775" name="Changes" comment="Removing unnecessary code from student and teacher." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -190,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668381128838</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Removing unnecessary code from student and teacher.">
+      <created>1668381459015</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1668381459015</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -210,6 +217,7 @@
     <MESSAGE value="Creating recycleview to display events." />
     <MESSAGE value="Fixing bugs in recycler view." />
     <MESSAGE value="Making events clickable which redirects user to the RSVP page." />
-    <option name="LAST_COMMIT_MESSAGE" value="Making events clickable which redirects user to the RSVP page." />
+    <MESSAGE value="Removing unnecessary code from student and teacher." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removing unnecessary code from student and teacher." />
   </component>
 </project>
