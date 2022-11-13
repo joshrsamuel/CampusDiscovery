@@ -44,7 +44,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.event_cell, parent, false);
 
-        return new RecyclerViewAdapter.MyViewHolder(view, recyclerViewInterface);
+        return new RecyclerViewAdapter.MyViewHolder(view, recyclerViewInterface, data);
     }
 
     @Override
@@ -138,17 +138,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return data.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder  {
+    public static class MyViewHolder extends RecyclerView.ViewHolder  {
         TextView title, date, location, description, host;
         String editorId;
         String userType;
         FirebaseUser currUser;
         Button removeEvent;
         Button editEvent;
+        List<DataSnapshot> data;
         DatabaseReference mirajDatabase = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("Events");
         DatabaseReference mirajUsers = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("UserInfo");
 
-        public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
+        public MyViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface, List<DataSnapshot> data) {
             super(itemView);
 
             title = itemView.findViewById(R.id.eventTitle);
@@ -237,6 +238,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                         if (position != RecyclerView.NO_POSITION) {
                             recyclerViewInterface.onClickEdit(data, position);
+                        }
+                    }
+                }
+            });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (recyclerViewInterface != null) {
+                        int pos = getAdapterPosition();
+                        if (pos != RecyclerView.NO_POSITION) {
+                            recyclerViewInterface.onItemClick(data, pos);
                         }
                     }
                 }

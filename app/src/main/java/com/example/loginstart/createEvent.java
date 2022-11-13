@@ -98,7 +98,6 @@ public class createEvent extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
     private void doReturn(String caller) {
         switch (caller) {
             case "student":

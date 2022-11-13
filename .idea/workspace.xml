@@ -12,14 +12,21 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="990cb897-73c9-4ef9-8177-697676a44775" name="Changes" comment="Creating recycleview to display events.">
+    <list default="true" id="990cb897-73c9-4ef9-8177-697676a44775" name="Changes" comment="Fixing bugs in recycler view.">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/rsvpEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_rsvp_event.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/LogInStart.app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/LogInStart.app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/RecyclerViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/RecyclerViewAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/event_cell.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/event_cell.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/RecyclerViewInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/RecyclerViewInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/createEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/createEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/student.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/teacher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +55,14 @@
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="layoutResourceFile" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -176,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667266439494</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixing bugs in recycler view.">
+      <created>1668361230560</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1668361230560</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -194,6 +216,7 @@
     <MESSAGE value="Updating branch" />
     <MESSAGE value="Updating branch to be the same as main" />
     <MESSAGE value="Creating recycleview to display events." />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating recycleview to display events." />
+    <MESSAGE value="Fixing bugs in recycler view." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixing bugs in recycler view." />
   </component>
 </project>
