@@ -176,7 +176,14 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
 
     @Override
     public void onItemClick(List<DataSnapshot> data, int position) {
-        Intent rsvp = new Intent(student.this, rsvpEvent.class);
+        Intent rsvp = new Intent(this, rsvpEvent.class);
+
+        rsvp.putExtra("title", data.get(position).child("title").getValue(String.class));
+        rsvp.putExtra("description", data.get(position).child("eventDescription").getValue(String.class));
+        rsvp.putExtra("location", data.get(position).child("location").getValue(String.class));
+        rsvp.putExtra("time", data.get(position).child("time").getValue(String.class));
+        rsvp.putExtra("host", data.get(position).child("host").getValue(String.class));
+        rsvp.putExtra("class", "student");
         startActivity(rsvp);
     }
 }
