@@ -143,4 +143,17 @@ public class teacher extends AppCompatActivity implements RecyclerViewInterface 
         edit.putExtra("class", "teacher");
         startActivity(edit);
     }
+
+    @Override
+    public void onItemClick(List<DataSnapshot> data, int position) {
+        Intent rsvp = new Intent(teacher.this, rsvpEvent.class);
+
+        rsvp.putExtra("title", data.get(position).child("title").getValue(String.class));
+        rsvp.putExtra("description", data.get(position).child("eventDescription").getValue(String.class));
+        rsvp.putExtra("location", data.get(position).child("location").getValue(String.class));
+        rsvp.putExtra("time", data.get(position).child("time").getValue(String.class));
+        rsvp.putExtra("host", data.get(position).child("host").getValue(String.class));
+        rsvp.putExtra("class", "student");
+        startActivity(rsvp);
+    }
 }
