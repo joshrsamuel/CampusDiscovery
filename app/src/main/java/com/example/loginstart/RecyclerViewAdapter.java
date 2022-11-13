@@ -66,10 +66,73 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Failed");
             }
         });
-    }
+        /*ValueEventListener recycleListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                eventHost = snapshot.getValue(userInfo.class);
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Failed");
+            }
+        };
+        userDatabase.child(data.get(position).child("host").getValue(String.class)).addValueEventListener(recycleListener);
+        if (eventHost !=null) {
+            holder.host.setText(eventHost.getFullName());
+            holder.userType = eventHost.getUserType();
+        }
+        if (!(holder.editorId.equals(holder.currUser.getUid()))) {
+            holder.removeEvent.setVisibility(View.GONE);
+            holder.editEvent.setVisibility(View.GONE);
+        }
+        if (holder.userType != null && holder.userType.equals("Admin")) {
+            holder.removeEvent.setVisibility(View.VISIBLE);
+        }*/
+        userDatabase.child(holder.currUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userInfo temp = snapshot.getValue(userInfo.class);
+                if (temp != null) {
+                    holder.userType = temp.getUserType();
+                }
+                userDatabase.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        System.out.println("Host of event: " + holder.host.getText().toString());
+                        System.out.println("Curr user: " + holder.currUser.getUid());
+                        /*if (!(holder.editorId.equals(holder.currUser.getUid()))) {
+                            holder.removeEvent.setVisibility(View.GONE);
+                            holder.editEvent.setVisibility(View.GONE);
+                        }*/
+                        if (holder.userType != null && holder.userType.equals("Admin")) {
+                            holder.removeEvent.setVisibility(View.VISIBLE);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        System.out.println("Failed");
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        if (!(holder.editorId.equals(holder.currUser.getUid()))) {
+            holder.removeEvent.setVisibility(View.GONE);
+            holder.editEvent.setVisibility(View.GONE);
+        } else {
+            holder.removeEvent.setVisibility(View.VISIBLE);
+            holder.editEvent.setVisibility(View.VISIBLE);
+        }
+    }
     @Override
     public int getItemCount() {
         return data.size();
@@ -95,6 +158,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             host = itemView.findViewById(R.id.eventHost);
 
             currUser = FirebaseAuth.getInstance().getCurrentUser();
+            /*
             mirajUsers.child(currUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -128,7 +192,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                 }
             });
-
+            */
             //Edit Button
             editEvent = itemView.findViewById(R.id.editEvent);
 
