@@ -12,22 +12,24 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="990cb897-73c9-4ef9-8177-697676a44775" name="Changes" comment="Removing unnecessary code from student and teacher.">
+    <list default="true" id="990cb897-73c9-4ef9-8177-697676a44775" name="Changes" comment="Updating RSVP page layout and loading for event information">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_access_time_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_person_24.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/rsvpEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/rsvpEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/student.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/loginstart/teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_rsvp_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_rsvp_event.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\migue\.android\avd\Miguel_Droid.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/ishankulkarni/.android/avd/Pixel_5_API_31.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -55,6 +57,7 @@
       <list>
         <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -234,6 +237,7 @@
     <MESSAGE value="Fixing bugs in recycler view." />
     <MESSAGE value="Making events clickable which redirects user to the RSVP page." />
     <MESSAGE value="Removing unnecessary code from student and teacher." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removing unnecessary code from student and teacher." />
+    <MESSAGE value="Updating RSVP page layout and loading for event information" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updating RSVP page layout and loading for event information" />
   </component>
 </project>
