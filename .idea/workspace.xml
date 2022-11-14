@@ -12,13 +12,16 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="990cb897-73c9-4ef9-8177-697676a44775" name="Changes" comment="Updating RSVP page layout and loading for event information">
+    <list default="true" id="990cb897-73c9-4ef9-8177-697676a44775" name="Changes" comment="Merging UI changes with rsvp loading">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/gradient_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/event_cell.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/event_cell.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_calendar_today_24.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_person_24.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_person_24.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_rsvp_event.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_rsvp_event.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668381558888</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Merging UI changes with rsvp loading">
+      <created>1668395362964</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1668395362964</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -232,8 +242,9 @@
     <MESSAGE value="Creating recycleview to display events." />
     <MESSAGE value="Fixing bugs in recycler view." />
     <MESSAGE value="Making events clickable which redirects user to the RSVP page." />
-    <MESSAGE value="Removing unnecessary code from student and teacher." />
     <MESSAGE value="Updating RSVP page layout and loading for event information" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updating RSVP page layout and loading for event information" />
+    <MESSAGE value="Removing unnecessary code from student and teacher." />
+    <MESSAGE value="Merging UI changes with rsvp loading" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merging UI changes with rsvp loading" />
   </component>
 </project>

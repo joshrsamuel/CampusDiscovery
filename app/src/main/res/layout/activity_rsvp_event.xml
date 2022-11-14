@@ -4,14 +4,14 @@
     android:id="@+id/eventMainPage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_1">
+    android:background="@color/dark_blue">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/eventMainCard"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="@color/bright_blue"
         app:cardCornerRadius="20dp"
         app:layout_constraintHeight_percent=".85"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -40,7 +40,7 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:text="Title placeholder"
-                        android:textColor="@android:color/black"
+                        android:textColor="@color/black"
                         android:textSize="21dp"
                         android:textStyle="bold"/>
 
@@ -50,7 +50,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Location placeholder"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="@color/white"
                         android:textSize="15sp"/>
 
                     <LinearLayout
@@ -68,7 +68,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Date"
-                                android:textColor="@android:color/black"
+                                android:textColor="@color/black"
                                 android:textSize="15sp"/>
 
                             <LinearLayout
@@ -87,7 +87,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
                                     android:text="Date placeholder"
-                                    android:textColor="@android:color/darker_gray"/>
+                                    android:textColor="@color/white"/>
                             </LinearLayout>
 
                         </LinearLayout>
@@ -102,7 +102,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Time"
-                                android:textColor="@android:color/black"
+                                android:textColor="@color/black"
                                 android:textSize="15sp"/>
 
                             <LinearLayout
@@ -150,7 +150,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Event Description Placeholder"
-                        android:textColor="@android:color/darker_gray"
+                        android:textColor="@color/white"
                         android:textSize="15sp"
                         android:layout_marginTop="5dp"/>
 
@@ -187,7 +187,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
                                     android:text="Host placeholder"
-                                    android:textColor="@android:color/darker_gray" />
+                                    android:textColor="@color/white" />
 
                             </LinearLayout>
                         </LinearLayout>
@@ -202,9 +202,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/gradient_2"
+                            android:background="@drawable/gradient_3"
                             android:orientation="vertical"
-
                             >
 
                             <TextView
@@ -227,7 +226,7 @@
                             android:layout_marginLeft="5dp"
                             android:maxLines="1"
                             android:text="are attending"
-                            android:textColor="@android:color/darker_gray" />
+                            android:textColor="@color/white" />
                     </LinearLayout>
                 </LinearLayout>
 
