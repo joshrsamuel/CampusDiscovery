@@ -9,16 +9,17 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="match_parent"
-        android:layout_height="340dp"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:background="@color/new_blue"
+        android:padding="20dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="7dp">
 
         <LinearLayout
             android:id="@+id/LinearLayoutcell"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/new_blue"
             android:orientation="vertical">
 
@@ -26,11 +27,11 @@
                 android:id="@+id/eventTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:paddingTop="5dp"
                 android:paddingBottom="10dp"
                 android:text="@string/title_place_holder"
-                android:fontFamily="sans-serif-black"
                 android:textColor="@color/white"
                 android:textSize="34sp" />
 
@@ -68,33 +69,31 @@
                 android:id="@+id/eventHost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
                 android:gravity="center"
                 android:text="Event Host Placeholder"
                 android:textColor="@color/white"
-                android:textSize="24sp"/>
+                android:textSize="24sp"
+                android:visibility="visible" />
 
             <Button
                 android:id="@+id/editEvent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="120dp"
-                android:text="Edit Event"
-                android:fontFamily="sans-serif-black"
-                android:textColor="@color/white"
                 android:backgroundTint="@color/dark_blue"
-                />
+                android:fontFamily="sans-serif-black"
+                android:text="Edit Event"
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/removeEvent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="120dp"
-                android:text="Remove Event"
-                android:textColor="@color/white"
-                android:fontFamily="sans-serif-black"
                 android:backgroundTint="@color/dark_blue"
-                />
+                android:fontFamily="sans-serif-black"
+                android:text="Remove Event"
+                android:textColor="@color/white" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
