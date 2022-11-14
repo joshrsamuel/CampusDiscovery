@@ -18,7 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="91dp"
-            android:background="@drawable/gradient_2"
+            android:background="@color/new_blue"
             android:orientation="vertical"
             android:padding="25dp">
 
@@ -26,10 +26,10 @@
                 android:id="@+id/orgHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="times"
+                android:fontFamily="sans-serif-black"
                 android:text="Create Event"
                 android:gravity="end"
-                android:textColor="@color/tech_blue"
+                android:textColor="@color/white"
                 android:textSize="23sp"
                 android:textStyle="bold">
 
@@ -43,9 +43,10 @@
         android:id="@+id/returnToDash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/tech_blue"
+        android:backgroundTint="@color/dark_blue"
         android:text="Return"
         android:textColor="@color/white"
+        android:fontFamily="sans-serif-black"
         android:textSize="15sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -60,7 +61,7 @@
         android:layout_height="638dp"
         android:layout_marginTop="1dp"
         android:orientation="vertical"
-        android:background="@drawable/gradient_1"
+        android:background="@drawable/create"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,33 +71,42 @@
         <EditText
             android:id="@+id/title"
             android:layout_width="match_parent"
+            android:layout_gravity="center"
             android:layout_height="40dp"
             android:hint="Event Title"
-            android:gravity="center"
-            android:textColorHint="@color/white"
-            android:textColor="@color/tech_bright_lime"
+            android:textAlignment="center"
+            android:backgroundTint="@color/new_blue"            android:gravity="center"
+            android:textColorHint="@color/new_blue"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/new_blue"
             android:layout_margin="20sp">
         </EditText>
 
         <EditText
             android:id="@+id/eventDescription"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:hint="Event Description"
+            android:backgroundTint="@color/new_blue"            android:hint="Event Description"
             android:gravity="center"
-            android:textColorHint="@color/white"
-            android:textColor="@color/tech_bright_lime"
+            android:textAlignment="center"
+            android:textColorHint="@color/new_blue"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/new_blue"
             android:layout_margin="20sp">
         </EditText>
 
         <EditText
             android:id="@+id/location"
+            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:backgroundTint="@color/new_blue"
             android:hint="Location"
+            android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:textColorHint="@color/white"
-            android:textColor="@color/tech_bright_lime"
+            android:textColorHint="@color/new_blue"
+            android:textColor="@color/new_blue"
             android:layout_margin="20sp">
         </EditText>
 
@@ -105,9 +115,13 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="Time"
+            android:backgroundTint="@color/new_blue"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:textColorHint="@color/white"
-            android:textColor="@color/tech_bright_lime"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif-medium"
+            android:textColorHint="@color/new_blue"
+            android:textColor="@color/new_blue"
             android:layout_margin="20sp">
         </EditText>
 
@@ -115,10 +129,10 @@
             android:id="@+id/createBtn"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_marginHorizontal="150dp"
             android:text="Create"
-            android:backgroundTint="@color/olympic_teal">
+            android:backgroundTint="@color/new_blue">
 
         </Button>
 
