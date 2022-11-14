@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_blue"
     tools:context=".organizer">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="91dp"
         app:elevation="0dp"
+        android:backgroundTint="@color/bright_blue"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,7 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="91dp"
-            android:background="@drawable/gradient_1"
+            android:backgroundTint="@color/bright_blue"
             android:orientation="vertical"
             android:padding="25dp">
 
@@ -27,10 +29,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:fontFamily="times"
+                android:fontFamily="sans-serif-black"
                 android:gravity="end"
                 android:text="Admin Dashboard"
-                android:textColor="@color/white"
+                android:textColor="@color/dark_blue"
                 android:textSize="23sp"
                 android:textStyle="bold">
 
@@ -44,7 +46,7 @@
         android:id="@+id/quit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/tech_blue"
+        android:backgroundTint="@color/dark_blue"
         android:text="Exit"
         android:textColor="@color/white"
         android:textSize="15sp"

@@ -4,31 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_launcher_foreground"
-    android:backgroundTint="@color/tech_blue">
+    android:background="@drawable/start">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fontFamily="times"
+        android:fontFamily="sans-serif-black"
+        android:layout_marginTop="300px"
         android:padding="20dp"
         android:text="Campus Discovery"
         android:textAlignment="center"
-        android:textColor="@color/tech_blue"
+        android:textColor="@color/white"
         android:textSize="40sp"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-86dp">
+        tools:layout_editor_absoluteY="53dp">
 
+    </TextView>
+
+    <TextView
+        android:id="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        android:layout_marginTop="430px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="sans-serif-black"
+        android:padding="20dp"
+        android:text="at Georgia Tech"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="53dp">
     </TextView>
 
     <Button
         android:id="@+id/startButton"
-        android:onClick="openLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/tech_gold"
-        android:text="Start"
+        android:backgroundTint="#455DAF"
+        android:layout_marginTop="500px"
+        android:onClick="openLogin"
+        android:fontFamily="sans-serif-black"
+        android:text="Let's Go!"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,5 +54,5 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.231" />
+        app:layout_constraintVertical_bias="0.654" />
 </androidx.constraintlayout.widget.ConstraintLayout>
