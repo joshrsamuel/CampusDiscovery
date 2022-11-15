@@ -207,7 +207,7 @@
                             >
 
                             <TextView
-                                android:id="@+id/count"
+                                android:id="@+id/numAttendees"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:padding="10dp"
@@ -229,6 +229,24 @@
                             android:textColor="@color/white" />
                     </LinearLayout>
                 </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="10dp"
+                    android:text="Select your RSVP Status"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+                <Spinner
+                    android:id="@+id/RSVPdropdown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gradient_4"
+                    android:popupBackground="@color/light_yellow"
+                    android:layout_gravity="end"
+                    android:textAlignment="textEnd"
+                    android:layout_margin="10dp"
+                    android:spinnerMode="dropdown" />
 
                 <Button
                     android:id="@+id/RSVP"

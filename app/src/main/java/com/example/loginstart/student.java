@@ -183,6 +183,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
         rsvp.putExtra("location", data.get(position).child("location").getValue(String.class));
         rsvp.putExtra("time", data.get(position).child("time").getValue(String.class));
         rsvp.putExtra("host", data.get(position).child("host").getValue(String.class));
+        rsvp.putExtra("attendees", data.get(position).child("attendees").child("Will Attend").getChildrenCount());
         rsvp.putExtra("class", "student");
         startActivity(rsvp);
     }
