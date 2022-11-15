@@ -227,7 +227,18 @@
                             android:maxLines="1"
                             android:text="are attending"
                             android:textColor="@color/white" />
+
                     </LinearLayout>
+                    <TextView
+                        android:id="@+id/viewAttendees"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="Click to View Attendees"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:textColor="@color/new_blue"/>
+
                 </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"

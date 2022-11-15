@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +37,7 @@ public class rsvpEvent extends AppCompatActivity{
     Button returnToDashBtn;
     Button RSVPBtn;
     FirebaseUser currUser;
+    TextView viewAttendees;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +66,7 @@ public class rsvpEvent extends AppCompatActivity{
         description = (TextView) findViewById(R.id.descriptionRSVP);
         host = (TextView) findViewById(R.id.hostRSVP);
         attendees = (TextView) findViewById(R.id.numAttendees);
+        viewAttendees = (TextView) findViewById(R.id.viewAttendees);
 
         String titleString = getIntent().getStringExtra("title");
         String descriptionString = getIntent().getStringExtra("description");
@@ -110,6 +113,15 @@ public class rsvpEvent extends AppCompatActivity{
             }
         });
 
+        viewAttendees.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(rsvpEvent.this, showAttendees.class);
+                intent.putExtra("title", titleString);
+                startActivity(intent);
+            }
+        });
+
         DatabaseReference eventDatabase = FirebaseDatabase.getInstance().getReference("Events");
 
         RSVPBtn = (Button) findViewById(R.id.RSVP);
@@ -120,6 +132,7 @@ public class rsvpEvent extends AppCompatActivity{
                     eventDatabase.child(titleString).child("attendees").child(status).child(currUser.getUid()).removeValue();
                 }
                 eventDatabase.child(titleString).child("attendees").child(rsvpStatus[0]).child(currUser.getUid()).setValue(username[0]);
+                Toast.makeText(rsvpEvent.this, "Successfully changed RSVP status", Toast.LENGTH_SHORT).show();
             }
         });
 
