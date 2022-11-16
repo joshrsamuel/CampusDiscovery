@@ -38,13 +38,15 @@ public class rsvpEvent extends AppCompatActivity{
     Button RSVPBtn;
     FirebaseUser currUser;
     TextView viewAttendees;
+    static String[] rsvpStatuses = {"Will Attend", "Maybe", "Won't Attend", "I'm praying on ur downfall"};
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rsvp_event);
 
         Spinner dropdown = findViewById(R.id.RSVPdropdown);
-        String[] rsvpStatuses = {"Will Attend", "Maybe", "Won't Attend", "I'm praying on ur downfall"};
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, rsvpStatuses);
         dropdown.setAdapter(adapter);
 
@@ -118,6 +120,7 @@ public class rsvpEvent extends AppCompatActivity{
             public void onClick(View view) {
                 Intent intent = new Intent(rsvpEvent.this, showAttendees.class);
                 intent.putExtra("title", titleString);
+                intent.putExtra("host", hostString);
                 startActivity(intent);
             }
         });
