@@ -185,9 +185,10 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
         String emailHead = theEmail.substring(0, theEmail.length()-4);
         System.out.println(emailHead);
         System.out.println(data.get(position).child("invitees").child(emailHead).getValue());
-        if (data.get(position).child("invitees").child(emailHead) != null
+        if ((data.get(position).child("inviteOnly").getValue(Boolean.class) != null && !data.get(position).child("inviteOnly").getValue(Boolean.class))
+                || (data.get(position).child("invitees").child(emailHead) != null
                 && data.get(position).child("invitees").child(emailHead).getValue() != null
-                && data.get(position).child("invitees").child(emailHead).getValue(String.class).equals(theEmail)) {
+                && data.get(position).child("invitees").child(emailHead).getValue(String.class).equals(theEmail))) {
             Intent rsvp = new Intent(this, rsvpEvent.class);
 
             rsvp.putExtra("title", data.get(position).child("title").getValue(String.class));
