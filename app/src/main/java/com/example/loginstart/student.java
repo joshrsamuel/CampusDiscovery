@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +42,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
         Context context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.dark_blue)));
         mirajDatabase = FirebaseDatabase.getInstance().getReference("UserInfo");
         currUser = FirebaseAuth.getInstance().getCurrentUser();
         mirajDatabase.child(currUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
