@@ -114,14 +114,14 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                 RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(0).getData(), context, student.this);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
-                Toast.makeText(student.this, "Events successfully loaded.", Toast.LENGTH_LONG).show();
+                Toast.makeText(student.this, "Events successfully loaded.", Toast.LENGTH_SHORT).show();
 
                 nextBtn = (Button) findViewById(R.id.nextPageStud);
                 nextBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if (currPage[0] + 1 == pages.size()) {
-                            Toast.makeText(student.this, "No next page.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(student.this, "No next page.", Toast.LENGTH_SHORT).show();
                         } else {
                             currPage[0] += 1;
                             RecyclerView recyclerView = findViewById(R.id.recycleviewstudent);
@@ -136,7 +136,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                     @Override
                     public void onClick(View view) {
                         if (currPage[0] == 0) {
-                            Toast.makeText(student.this, "No previous page.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(student.this, "No previous page.", Toast.LENGTH_SHORT).show();
                         } else {
                             currPage[0] -= 1;
                             RecyclerView recyclerView = findViewById(R.id.recycleviewstudent);
@@ -183,6 +183,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
         rsvp.putExtra("location", data.get(position).child("location").getValue(String.class));
         rsvp.putExtra("time", data.get(position).child("time").getValue(String.class));
         rsvp.putExtra("host", data.get(position).child("host").getValue(String.class));
+        rsvp.putExtra("attendees", data.get(position).child("attendees").child("Will Attend").getChildrenCount());
         rsvp.putExtra("class", "student");
         startActivity(rsvp);
     }

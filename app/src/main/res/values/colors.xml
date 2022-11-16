@@ -16,5 +16,7 @@
     <color name= "dark_blue">#030B26</color>
     <color name= "new_yellow">#E5B200</color>
     <color name="tech_bright_lime">#00EC9C</color>
+    <color name="new_green">#90c0cd</color>
+    <color name="light_yellow">#ffe89b</color>
 
 </resources>
