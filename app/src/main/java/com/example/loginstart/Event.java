@@ -10,13 +10,17 @@ public class Event {
     public String eventDescription;
     public String location;
     public String time;
+    public int capacity;
+    public boolean inviteOnly;
 
-    public Event(String title, String host, String eventDescription, String location, String time) {
+    public Event(String title, String host, String eventDescription, String location, String time, int capacity, boolean inviteOnly) {
         this.title = title;
         this.host = host;
         this.eventDescription = eventDescription;
         this.location = location;
         this.time = time;
+        this.capacity = capacity;
+        this.inviteOnly = inviteOnly;
     }
 
     public String toString() {

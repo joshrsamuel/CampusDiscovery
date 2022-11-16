@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
@@ -24,35 +26,53 @@ public class editEvent extends AppCompatActivity {
     EditText eventDescription;
     EditText location;
     EditText time;
+    EditText capacity;
     Button update;
+    TextView editHeader;
+    TextView invitePpl;
+    private Button yesBtn, laterBtn;
+    private LinearLayout invBtns;
     Button returnToDashBtn;
     String txtTitle, txtEventDescription, txtLocation, txtTime;
+    int capNum;
+    Switch inviteOnly;
+    boolean isInvite;
     DatabaseReference mirajDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
-
+        editHeader = (TextView) findViewById(R.id.orgHeader);
+        editHeader.setText("Edit Event");
         update = (Button) findViewById(R.id.createBtn);
         update.setText("Update");
+        inviteOnly = (Switch) findViewById(R.id.invite);
+        inviteOnly.setVisibility(View.INVISIBLE);
 
         String titleString = getIntent().getStringExtra("title");
         String descriptionString = getIntent().getStringExtra("description");
         String locationString = getIntent().getStringExtra("location");
         String timeString = getIntent().getStringExtra("time");
         String host = getIntent().getStringExtra("host");
+        int capX = getIntent().getIntExtra("capacity", 10);
+        isInvite = getIntent().getBooleanExtra("inviteOnly", false);
 
         title = (EditText) findViewById(R.id.title);
         eventDescription = (EditText) findViewById(R.id.eventDescription);
         location = (EditText) findViewById(R.id.location);
         time = (EditText) findViewById(R.id.time);
+        capacity = (EditText) findViewById(R.id.capacity);
+        invBtns = (LinearLayout) findViewById(R.id.invButtons);
+        yesBtn = (Button) findViewById(R.id.addInvBtn);
+        laterBtn = (Button) findViewById(R.id.laterBtn);
+        invitePpl = (TextView) findViewById(R.id.invPplText);
 
         title.setText(titleString);
         eventDescription.setText(descriptionString);
         location.setText(locationString);
         time.setText(timeString);
-
+        capacity.setText(String.valueOf(capX));
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,12 +80,13 @@ public class editEvent extends AppCompatActivity {
                 txtEventDescription = eventDescription.getText().toString().trim();
                 txtLocation = location.getText().toString().trim();
                 txtTime = time.getText().toString().trim();
+                capNum = Integer.valueOf(capacity.getText().toString().trim());
 
                 mirajDatabase = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("Events");
 
                 mirajDatabase.child(titleString).removeValue();
                 Map<String, Object> updates = new HashMap<>();
-                updates.put(txtTitle, new Event(txtTitle, host, txtEventDescription, txtLocation, txtTime));
+                updates.put(txtTitle, new Event(txtTitle, host, txtEventDescription, txtLocation, txtTime, capNum, isInvite));
                 mirajDatabase.updateChildren(updates).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
@@ -92,13 +113,35 @@ public class editEvent extends AppCompatActivity {
     }
 
     private void doReturn(String caller) {
-        switch (caller) {
-            case "student":
-                startActivity(new Intent(editEvent.this, student.class));
-                break;
-            case "teacher":
-                startActivity(new Intent(editEvent.this, teacher.class));
-                break;
+        if (isInvite) {
+            isInvite = false;
+            invitePpl.setVisibility(View.VISIBLE);
+            invBtns.setVisibility(View.VISIBLE);
+            yesBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent goInvite = new Intent(editEvent.this, addInvitees.class);
+                    goInvite.putExtra("title", txtTitle);
+                    goInvite.putExtra("userType", caller);
+                    startActivity(goInvite);
+                }
+            });
+            laterBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String caller = getIntent().getStringExtra("class");
+                    doReturn(caller);
+                }
+            });
+        } else {
+            switch (caller) {
+                case "student":
+                    startActivity(new Intent(editEvent.this, student.class));
+                    break;
+                case "teacher":
+                    startActivity(new Intent(editEvent.this, student.class));
+                    break;
+            }
         }
     }
 }

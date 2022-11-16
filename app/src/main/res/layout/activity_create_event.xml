@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".organizer">
+    tools:context=".organizer"
+    android:background="@color/dark_blue">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -57,13 +58,12 @@
         tools:ignore="NotSibling" />
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="638dp"
-        android:layout_marginTop="1dp"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/create"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar">
 
@@ -71,71 +71,143 @@
         <EditText
             android:id="@+id/title"
             android:layout_width="match_parent"
-            android:layout_gravity="center"
             android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_margin="15sp"
+            android:backgroundTint="@color/new_blue"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
             android:hint="Event Title"
             android:textAlignment="center"
-            android:backgroundTint="@color/new_blue"            android:gravity="center"
-            android:textColorHint="@color/new_blue"
-            android:fontFamily="sans-serif-medium"
             android:textColor="@color/new_blue"
-            android:layout_margin="20sp">
-        </EditText>
+            android:textColorHint="@color/new_blue"></EditText>
 
         <EditText
             android:id="@+id/eventDescription"
-            android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:backgroundTint="@color/new_blue"            android:hint="Event Description"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColorHint="@color/new_blue"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_margin="10sp"
+            android:backgroundTint="@color/new_blue"
             android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:hint="Event Description"
+            android:textAlignment="center"
             android:textColor="@color/new_blue"
-            android:layout_margin="20sp">
-        </EditText>
+            android:textColorHint="@color/new_blue"></EditText>
 
         <EditText
             android:id="@+id/location"
-            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_margin="10sp"
             android:backgroundTint="@color/new_blue"
-            android:hint="Location"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:textColorHint="@color/new_blue"
+            android:hint="Location"
+            android:textAlignment="center"
             android:textColor="@color/new_blue"
-            android:layout_margin="20sp">
-        </EditText>
+            android:textColorHint="@color/new_blue"></EditText>
 
         <EditText
             android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:hint="Time"
-            android:backgroundTint="@color/new_blue"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:textAlignment="center"
+            android:layout_margin="10sp"
+            android:backgroundTint="@color/new_blue"
             android:fontFamily="sans-serif-medium"
-            android:textColorHint="@color/new_blue"
+            android:gravity="center"
+            android:hint="Time"
+            android:textAlignment="center"
             android:textColor="@color/new_blue"
-            android:layout_margin="20sp">
+            android:textColorHint="@color/new_blue"></EditText>
+
+        <EditText
+            android:id="@+id/capacity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10sp"
+            android:backgroundTint="@color/new_blue"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:hint="Event Capacity"
+            android:textAlignment="center"
+            android:textColor="@color/new_blue"
+            android:textColorHint="@color/new_blue">
+
         </EditText>
+
+        <Switch
+            android:id="@+id/invite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/bright_blue"
+            android:fontFamily="sans-serif-medium"
+            android:switchMinWidth="100dp"
+            android:text="Make event invite only?"
+            android:textColor="@color/dark_blue"
+            android:textSize="20dp"></Switch>
 
         <Button
             android:id="@+id/createBtn"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:layout_marginHorizontal="145dp"
             android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="150dp"
-            android:text="Create"
-            android:backgroundTint="@color/new_blue">
+            android:backgroundTint="@color/new_blue"
+            android:text="Create">
 
         </Button>
-
     </LinearLayout>
+    <TextView
+        android:id="@+id/invPplText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:fontFamily="sans-serif-medium"
+        android:background="@color/tech_blue"
+        android:text="Add invitees?"
+        android:textAlignment="center"
+        android:textColor="@color/new_blue"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@id/invButtons"
+        android:visibility="invisible">
+    </TextView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<LinearLayout
+    android:id="@+id/invButtons"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:orientation="horizontal"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:layout_marginBottom="100dp"
+    android:visibility="invisible">
+
+<Button
+    android:id="@+id/addInvBtn"
+    android:layout_width="wrap_content"
+    android:layout_height="45dp"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="15dp"
+    android:backgroundTint="@color/new_blue"
+    android:text="Yes">
+</Button>
+
+<Button
+    android:id="@+id/laterBtn"
+    android:layout_width="wrap_content"
+    android:layout_height="45dp"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginVertical="15dp"
+    android:backgroundTint="@color/new_blue"
+    android:text="Later">
+</Button>
+</LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

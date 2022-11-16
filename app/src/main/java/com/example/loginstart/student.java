@@ -53,6 +53,9 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                         dashboardHeader.setText("Admin Dashboard");
                         FloatingActionButton tempBtn = (FloatingActionButton) findViewById(R.id.studentCreate);
                         tempBtn.setVisibility(View.GONE);
+                    } else if (currUserInfo.getUserType().equals("Teacher")) {
+                        dashboardHeader = (TextView) findViewById(R.id.eventHeader);
+                        dashboardHeader.setText("Teacher Dashboard");
                     }
                 }
             }
@@ -171,20 +174,34 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
         edit.putExtra("time", data.get(position).child("time").getValue(String.class));
         edit.putExtra("host", data.get(position).child("host").getValue(String.class));
         edit.putExtra("class", "student");
+        edit.putExtra("capacity",data.get(position).child("capacity").getValue(Integer.class));
+        edit.putExtra("inviteOnly", data.get(position).child("inviteOnly").getValue(Boolean.class));
         startActivity(edit);
     }
 
     @Override
     public void onItemClick(List<DataSnapshot> data, int position) {
-        Intent rsvp = new Intent(this, rsvpEvent.class);
+        String theEmail = currUser.getEmail();
+        String emailHead = theEmail.substring(0, theEmail.length()-4);
+        System.out.println(emailHead);
+        System.out.println(data.get(position).child("invitees").child(emailHead).getValue());
+        if (data.get(position).child("invitees").child(emailHead) != null
+                && data.get(position).child("invitees").child(emailHead).getValue() != null
+                && data.get(position).child("invitees").child(emailHead).getValue(String.class).equals(theEmail)) {
+            Intent rsvp = new Intent(this, rsvpEvent.class);
 
-        rsvp.putExtra("title", data.get(position).child("title").getValue(String.class));
-        rsvp.putExtra("description", data.get(position).child("eventDescription").getValue(String.class));
-        rsvp.putExtra("location", data.get(position).child("location").getValue(String.class));
-        rsvp.putExtra("time", data.get(position).child("time").getValue(String.class));
-        rsvp.putExtra("host", data.get(position).child("host").getValue(String.class));
-        rsvp.putExtra("attendees", data.get(position).child("attendees").child("Will Attend").getChildrenCount());
-        rsvp.putExtra("class", "student");
-        startActivity(rsvp);
+            rsvp.putExtra("title", data.get(position).child("title").getValue(String.class));
+            rsvp.putExtra("description", data.get(position).child("eventDescription").getValue(String.class));
+            rsvp.putExtra("location", data.get(position).child("location").getValue(String.class));
+            rsvp.putExtra("time", data.get(position).child("time").getValue(String.class));
+            rsvp.putExtra("host", data.get(position).child("host").getValue(String.class));
+            rsvp.putExtra("attendees", data.get(position).child("attendees").child("Will Attend").getChildrenCount());
+            rsvp.putExtra("class", "student");
+            rsvp.putExtra("capacity", data.get(position).child("capacity").getValue(Integer.class));
+            rsvp.putExtra("inviteOnly", data.get(position).child("inviteOnly").getValue(Boolean.class));
+            startActivity(rsvp);
+        } else {
+            Toast.makeText(student.this, "Not invited to event.", Toast.LENGTH_LONG).show();
+        }
     }
 }
