@@ -3,6 +3,7 @@ package com.example.loginstart;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 
+
 public class Event {
     public String title;
     public String host;
