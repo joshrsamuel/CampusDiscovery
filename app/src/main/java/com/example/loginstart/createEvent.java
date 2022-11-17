@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,8 +29,14 @@ public class createEvent extends AppCompatActivity {
     private EditText eventDescription;
     private EditText location;
     private EditText time;
+    private EditText capacity;
+    private TextView invitePpl;
+    private Switch inviteMode;
     private String txtTitle, txtEventDescription, txtLocation, txtTime;
-    private Button createBtn;
+    private Button createBtn, yesBtn, laterBtn;
+    private LinearLayout invBtns;
+    private int eventCap;
+    private boolean onlyInv;
     private Button returnToDashBtn;
     private Event created;
     private FirebaseUser currUser;
@@ -43,6 +52,12 @@ public class createEvent extends AppCompatActivity {
         eventDescription = (EditText) findViewById(R.id.eventDescription);
         location = (EditText) findViewById(R.id.location);
         time = (EditText) findViewById(R.id.time);
+        capacity = (EditText) findViewById(R.id.capacity);
+        inviteMode = (Switch) findViewById(R.id.invite);
+        invBtns = (LinearLayout) findViewById(R.id.invButtons);
+        yesBtn = (Button) findViewById(R.id.addInvBtn);
+        laterBtn = (Button) findViewById(R.id.laterBtn);
+        invitePpl = (TextView) findViewById(R.id.invPplText);
 
         returnToDashBtn = (Button) findViewById(R.id.returnToDash);
         returnToDashBtn.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +77,8 @@ public class createEvent extends AppCompatActivity {
                 txtEventDescription = eventDescription.getText().toString().trim();
                 txtLocation = location.getText().toString().trim();
                 txtTime = time.getText().toString().trim();
+                eventCap = (int) Integer.valueOf(capacity.getText().toString().trim());
+                onlyInv = inviteMode.isChecked();
                 currUser = FirebaseAuth.getInstance().getCurrentUser();
                 mirajDatabase = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("UserInfo");
                 mirajDatabase.child(currUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -75,7 +92,7 @@ public class createEvent extends AppCompatActivity {
                         Toast.makeText(createEvent.this, "ERROR", Toast.LENGTH_LONG).show();
                     }
                 });
-                created = new Event(txtTitle, currUser.getUid(), txtEventDescription, txtLocation, txtTime);
+                created = new Event(txtTitle, currUser.getUid(), txtEventDescription, txtLocation, txtTime, eventCap, onlyInv);
                 mirajDatabase = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("Events");
                 mirajDatabase.child(txtTitle).setValue(created).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -100,13 +117,36 @@ public class createEvent extends AppCompatActivity {
         startActivity(intent);
     }
     private void doReturn(String caller) {
-        switch (caller) {
-            case "student":
-                startActivity(new Intent(createEvent.this, student.class));
-                break;
-            case "teacher":
-                startActivity(new Intent(createEvent.this, teacher.class));
-                break;
+        if (inviteMode.isChecked() && invitePpl.getVisibility() != 0) {
+            String calling = caller;
+            invitePpl.setVisibility(View.VISIBLE);
+            invBtns.setVisibility(View.VISIBLE);
+            yesBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent goInvite = new Intent(createEvent.this, addInvitees.class);
+                    goInvite.putExtra("title", txtTitle);
+                    goInvite.putExtra("userType", caller);
+                    startActivity(goInvite);
+                }
+            });
+            laterBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    inviteMode.setChecked(false);
+                    String caller = getIntent().getStringExtra("class");
+                    doReturn(caller);
+                }
+            });
+        } else {
+            switch (caller) {
+                case "student":
+                    startActivity(new Intent(createEvent.this, student.class));
+                    break;
+                case "teacher":
+                    startActivity(new Intent(createEvent.this, student.class));
+                    break;
+            }
         }
     }
 }
