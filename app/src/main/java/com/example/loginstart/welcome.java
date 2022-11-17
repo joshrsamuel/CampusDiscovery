@@ -68,20 +68,7 @@ public class welcome extends AppCompatActivity {
         delay.schedule(new TimerTask() {
             @Override
             public void run() {
-                switch (userType) {
-                    case "Student":
-                        delay.cancel();
                         startActivity(new Intent(welcome.this, student.class));
-                        break;
-                    case "Teacher":
-                        delay.cancel();
-                        startActivity(new Intent(welcome.this, teacher.class));
-                        break;
-                    case "Admin":
-                        delay.cancel();
-                        startActivity(new Intent(welcome.this, student.class));
-                        break;
-                }
             }
         }, 1500);
     }

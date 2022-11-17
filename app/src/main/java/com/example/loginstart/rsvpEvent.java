@@ -38,6 +38,7 @@ public class rsvpEvent extends AppCompatActivity{
     Button RSVPBtn;
     FirebaseUser currUser;
     TextView viewAttendees;
+    TextView capString;
     static String[] rsvpStatuses = {"Will Attend", "Maybe", "Won't Attend", "I'm praying on ur downfall"};
 
 
@@ -69,6 +70,7 @@ public class rsvpEvent extends AppCompatActivity{
         host = (TextView) findViewById(R.id.hostRSVP);
         attendees = (TextView) findViewById(R.id.numAttendees);
         viewAttendees = (TextView) findViewById(R.id.viewAttendees);
+        capString = (TextView) findViewById(R.id.capString);
 
         String titleString = getIntent().getStringExtra("title");
         String descriptionString = getIntent().getStringExtra("description");
@@ -98,6 +100,7 @@ public class rsvpEvent extends AppCompatActivity{
         time.setText(timeString);
         description.setText(descriptionString);
         attendees.setText(attendeesString);
+        capString.setText(String.valueOf(getIntent().getIntExtra("capacity", 10)));
 
         final String[] username = new String[1];
 
@@ -131,11 +134,12 @@ public class rsvpEvent extends AppCompatActivity{
         RSVPBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (String status : rsvpStatuses) {
-                    eventDatabase.child(titleString).child("attendees").child(status).child(currUser.getUid()).removeValue();
-                }
-                eventDatabase.child(titleString).child("attendees").child(rsvpStatus[0]).child(currUser.getUid()).setValue(username[0]);
-                Toast.makeText(rsvpEvent.this, "Successfully changed RSVP status", Toast.LENGTH_SHORT).show();
+                //if((long) getIntent().getIntExtra("capacity", 0) < (long) getIntent().getLongExtra("attendees", 0)) { //FUTURE FUNCTIONALITY
+                    for (String status : rsvpStatuses) {
+                        eventDatabase.child(titleString).child("attendees").child(status).child(currUser.getUid()).removeValue();
+                    }
+                    eventDatabase.child(titleString).child("attendees").child(rsvpStatus[0]).child(currUser.getUid()).setValue(username[0]);
+                    Toast.makeText(rsvpEvent.this, "Successfully changed RSVP status", Toast.LENGTH_SHORT).show();
             }
         });
 

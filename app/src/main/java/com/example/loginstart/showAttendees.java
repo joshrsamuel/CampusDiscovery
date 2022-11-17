@@ -1,8 +1,11 @@
 package com.example.loginstart;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class showAttendees extends AppCompatActivity implements RecyclerViewInterface {
+    private Button returnToDashBtn;
     protected void onCreate(Bundle savedInstanceState) {
         Context context = this;
         super.onCreate(savedInstanceState);
@@ -106,6 +110,13 @@ public class showAttendees extends AppCompatActivity implements RecyclerViewInte
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 System.out.println("Failed to retrieve attendees");
+            }
+        });
+        returnToDashBtn = (Button) findViewById(R.id.dashReturn);
+        returnToDashBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(showAttendees.this, student.class));
             }
         });
     }
