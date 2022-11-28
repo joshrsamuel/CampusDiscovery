@@ -127,7 +127,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginLeft="10dp"
                                         android:text="Time placeholder"
-                                        android:textColor="@android:color/holo_green_dark"/>
+                                        android:textColor="@color/white"/>
 
                                 </LinearLayout>
 

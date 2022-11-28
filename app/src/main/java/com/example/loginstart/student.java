@@ -171,7 +171,8 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
         edit.putExtra("title", data.get(position).child("title").getValue(String.class));
         edit.putExtra("description", data.get(position).child("eventDescription").getValue(String.class));
         edit.putExtra("location", data.get(position).child("location").getValue(String.class));
-        edit.putExtra("time", data.get(position).child("time").getValue(String.class));
+        edit.putExtra("startTime", data.get(position).child("startTime").getValue(String.class));
+        edit.putExtra("endTime", data.get(position).child("endTime").getValue(String.class));
         edit.putExtra("host", data.get(position).child("host").getValue(String.class));
         edit.putExtra("class", "student");
         edit.putExtra("capacity",data.get(position).child("capacity").getValue(Integer.class));
@@ -194,7 +195,8 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
             rsvp.putExtra("title", data.get(position).child("title").getValue(String.class));
             rsvp.putExtra("description", data.get(position).child("eventDescription").getValue(String.class));
             rsvp.putExtra("location", data.get(position).child("location").getValue(String.class));
-            rsvp.putExtra("time", data.get(position).child("time").getValue(String.class));
+            rsvp.putExtra("startTime", data.get(position).child("startTime").getValue(String.class));
+            rsvp.putExtra("endTime", data.get(position).child("endTime").getValue(String.class));
             rsvp.putExtra("host", data.get(position).child("host").getValue(String.class));
             rsvp.putExtra("attendees", data.get(position).child("attendees").child("Will Attend").getChildrenCount());
             rsvp.putExtra("class", "student");
