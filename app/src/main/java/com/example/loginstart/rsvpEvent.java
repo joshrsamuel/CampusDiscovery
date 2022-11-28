@@ -75,7 +75,9 @@ public class rsvpEvent extends AppCompatActivity{
         String titleString = getIntent().getStringExtra("title");
         String descriptionString = getIntent().getStringExtra("description");
         String locationString = getIntent().getStringExtra("location");
-        String timeString = getIntent().getStringExtra("time");
+        String startTimeString = getIntent().getStringExtra("startTime");
+        String endTimeString = getIntent().getStringExtra("endTime");
+        String timeString = startTimeString + " - " + endTimeString;
         String hostString = getIntent().getStringExtra("host");
         String attendeesString = "" + getIntent().getLongExtra("attendees", 0);
 

@@ -25,7 +25,8 @@ public class editEvent extends AppCompatActivity {
     EditText title;
     EditText eventDescription;
     EditText location;
-    EditText time;
+    Button startTime;
+    Button endTime;
     EditText capacity;
     Button update;
     TextView editHeader;
@@ -33,7 +34,7 @@ public class editEvent extends AppCompatActivity {
     private Button yesBtn, laterBtn;
     private LinearLayout invBtns;
     Button returnToDashBtn;
-    String txtTitle, txtEventDescription, txtLocation, txtTime;
+    String txtTitle, txtEventDescription, txtLocation, txtStartTime, txtEndTime;
     int capNum;
     Switch inviteOnly;
     boolean isInvite;
@@ -53,7 +54,8 @@ public class editEvent extends AppCompatActivity {
         String titleString = getIntent().getStringExtra("title");
         String descriptionString = getIntent().getStringExtra("description");
         String locationString = getIntent().getStringExtra("location");
-        String timeString = getIntent().getStringExtra("time");
+        String startTimeString = getIntent().getStringExtra("startTime");
+        String endTimeString = getIntent().getStringExtra("endTime");
         String host = getIntent().getStringExtra("host");
         int capX = getIntent().getIntExtra("capacity", 10);
         isInvite = getIntent().getBooleanExtra("inviteOnly", false);
@@ -61,7 +63,8 @@ public class editEvent extends AppCompatActivity {
         title = (EditText) findViewById(R.id.title);
         eventDescription = (EditText) findViewById(R.id.eventDescription);
         location = (EditText) findViewById(R.id.location);
-        time = (EditText) findViewById(R.id.time);
+        startTime = (Button) findViewById(R.id.startTime);
+        endTime = (Button) findViewById(R.id.endTime);
         capacity = (EditText) findViewById(R.id.capacity);
         invBtns = (LinearLayout) findViewById(R.id.invButtons);
         yesBtn = (Button) findViewById(R.id.addInvBtn);
@@ -71,7 +74,8 @@ public class editEvent extends AppCompatActivity {
         title.setText(titleString);
         eventDescription.setText(descriptionString);
         location.setText(locationString);
-        time.setText(timeString);
+        startTime.setText(startTimeString);
+        endTime.setText(endTimeString);
         capacity.setText(String.valueOf(capX));
         update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,14 +83,15 @@ public class editEvent extends AppCompatActivity {
                 txtTitle = title.getText().toString().trim();
                 txtEventDescription = eventDescription.getText().toString().trim();
                 txtLocation = location.getText().toString().trim();
-                txtTime = time.getText().toString().trim();
+                txtStartTime = startTime.getText().toString();
+                txtEndTime = endTime.getText().toString();
                 capNum = Integer.valueOf(capacity.getText().toString().trim());
 
                 mirajDatabase = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("Events");
 
                 mirajDatabase.child(titleString).removeValue();
                 Map<String, Object> updates = new HashMap<>();
-                updates.put(txtTitle, new Event(txtTitle, host, txtEventDescription, txtLocation, txtTime, capNum, isInvite));
+                updates.put(txtTitle, new Event(txtTitle, host, txtEventDescription, txtLocation, txtStartTime, txtEndTime, capNum, isInvite));
                 mirajDatabase.updateChildren(updates).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
