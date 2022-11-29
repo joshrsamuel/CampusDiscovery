@@ -145,6 +145,7 @@ public class rsvpEvent extends AppCompatActivity{
             }
         });
 
+
         returnToDashBtn = (Button) findViewById(R.id.RSVPreturn);
         returnToDashBtn.setOnClickListener(new View.OnClickListener() {
             @Override
