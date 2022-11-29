@@ -123,14 +123,17 @@
             android:textColor="@color/white"
             android:textColorHint="@color/new_blue"/>
 
-        <DatePicker
-            android:layout_width="wrap_content"
-            android:layout_height="90dp"
+        <Button
+            android:id="@+id/date"
+            android:layout_width="185dp"
+            android:layout_height="50dp"
+            android:onClick="pickDate"
             android:layout_gravity="center"
             android:layout_margin="10sp"
             android:backgroundTint="@color/new_blue"
             android:fontFamily="sans-serif-medium"
-            android:textColor="@color/new_blue"
+            android:text="Date"
+            android:textColor="@color/white"
             android:textColorHint="@color/new_blue" />
         <LinearLayout
             android:layout_width="match_parent"
