@@ -30,6 +30,7 @@ import java.util.List;
 public class student extends AppCompatActivity implements RecyclerViewInterface {
     private Button exitBtn;
     private FloatingActionButton createEventBtn;
+    private FloatingActionButton eventMapBtn;
     private DatabaseReference mirajDatabase;
     private FirebaseUser currUser;
     private TextView dashboardHeader;
@@ -71,6 +72,14 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(student.this, MainActivity.class));
+            }
+        });
+
+        eventMapBtn = (FloatingActionButton) findViewById(R.id.eventMap);
+        eventMapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(student.this, showEventMap.class));
             }
         });
 
