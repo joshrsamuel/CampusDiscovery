@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,18 +24,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class student extends AppCompatActivity implements RecyclerViewInterface {
     private Button exitBtn;
     private FloatingActionButton createEventBtn;
+    private FloatingActionButton eventMapBtn;
     private DatabaseReference mirajDatabase;
     private FirebaseUser currUser;
     private TextView dashboardHeader;
     private userInfo currUserInfo;
     private Button nextBtn;
     private Button backBtn;
-    private Button myEventBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +51,12 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                 currUserInfo = snapshot.getValue(userInfo.class);
                 if (currUserInfo != null) {
                     if (currUserInfo.getUserType().equals("Admin")) {
-                        dashboardHeader = (TextView)  findViewById(R.id.pageHeader);
+                        dashboardHeader = (TextView)  findViewById(R.id.eventHeader);
                         dashboardHeader.setText("Admin Dashboard");
                         FloatingActionButton tempBtn = (FloatingActionButton) findViewById(R.id.studentCreate);
                         tempBtn.setVisibility(View.GONE);
                     } else if (currUserInfo.getUserType().equals("Teacher")) {
-                        dashboardHeader = (TextView) findViewById(R.id.pageHeader);
+                        dashboardHeader = (TextView) findViewById(R.id.eventHeader);
                         dashboardHeader.setText("Teacher Dashboard");
                     }
                 }
@@ -72,13 +74,15 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                 startActivity(new Intent(student.this, MainActivity.class));
             }
         });
-        myEventBtn = (Button) findViewById(R.id.MyEventsBut);
-        myEventBtn.setOnClickListener((new View.OnClickListener() {
+
+        eventMapBtn = (FloatingActionButton) findViewById(R.id.eventMap);
+        eventMapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(student.this, MyEvents.class));
+                startActivity(new Intent(student.this, showEventMap.class));
             }
-        }));
+        });
+
         createEventBtn = (FloatingActionButton) findViewById(R.id.studentCreate);
         createEventBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +123,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                     }
                 }
 
-                RecyclerView recyclerView = findViewById(R.id.recycleviewEvents);
+                RecyclerView recyclerView = findViewById(R.id.recycleviewstudent);
                 RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(0).getData(), context, student.this);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -133,7 +137,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                             Toast.makeText(student.this, "No next page.", Toast.LENGTH_SHORT).show();
                         } else {
                             currPage[0] += 1;
-                            RecyclerView recyclerView = findViewById(R.id.recycleviewEvents);
+                            RecyclerView recyclerView = findViewById(R.id.recycleviewstudent);
                             RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(currPage[0]).getData(), context, student.this);
                             recyclerView.setAdapter(adapter);
                             recyclerView.setLayoutManager(new LinearLayoutManager(student.this));
@@ -148,7 +152,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                             Toast.makeText(student.this, "No previous page.", Toast.LENGTH_SHORT).show();
                         } else {
                             currPage[0] -= 1;
-                            RecyclerView recyclerView = findViewById(R.id.recycleviewEvents);
+                            RecyclerView recyclerView = findViewById(R.id.recycleviewstudent);
                             RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(currPage[0]).getData(), context, student.this);
                             recyclerView.setAdapter(adapter);
                             recyclerView.setLayoutManager(new LinearLayoutManager(student.this));
@@ -174,11 +178,34 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
     @Override
     public void onClickEdit(List<DataSnapshot> data, int position) {
         Intent edit = new Intent(this, editEvent.class);
+        HashMap<String, Object> attendees = new HashMap<>();
+        HashMap<String, Object> maybes = new HashMap<>();
+        HashMap<String, Object> wonts = new HashMap<>();
+        HashMap<String, Object> enemies = new HashMap<>();
+        for (DataSnapshot snapshot : data.get(position).child("attendees").child("Will Attend").getChildren()) {
+            attendees.put(snapshot.getKey(), snapshot.getValue());
+        }
+        for (DataSnapshot snapshot : data.get(position).child("attendees").child("Maybe").getChildren()) {
+            maybes.put(snapshot.getKey(), snapshot.getValue());
+        }
+        for (DataSnapshot snapshot : data.get(position).child("attendees").child("Won't Attend").getChildren()) {
+            wonts.put(snapshot.getKey(), snapshot.getValue());
+        }
+        for (DataSnapshot snapshot : data.get(position).child("attendees").child("I'm praying on ur downfall").getChildren()) {
+            enemies.put(snapshot.getKey(), snapshot.getValue());
+        }
         edit.putExtra("title", data.get(position).child("title").getValue(String.class));
         edit.putExtra("description", data.get(position).child("eventDescription").getValue(String.class));
         edit.putExtra("location", data.get(position).child("location").getValue(String.class));
+        edit.putExtra("date", data.get(position).child("date").getValue(String.class));
         edit.putExtra("startTime", data.get(position).child("startTime").getValue(String.class));
         edit.putExtra("endTime", data.get(position).child("endTime").getValue(String.class));
+
+        edit.putExtra("attendees", attendees);
+        edit.putExtra("maybes", maybes);
+        edit.putExtra("wonts", wonts);
+        edit.putExtra("enemies", enemies);
+
         edit.putExtra("host", data.get(position).child("host").getValue(String.class));
         edit.putExtra("class", "student");
         edit.putExtra("capacity",data.get(position).child("capacity").getValue(Integer.class));
@@ -201,6 +228,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
             rsvp.putExtra("title", data.get(position).child("title").getValue(String.class));
             rsvp.putExtra("description", data.get(position).child("eventDescription").getValue(String.class));
             rsvp.putExtra("location", data.get(position).child("location").getValue(String.class));
+            rsvp.putExtra("date", data.get(position).child("date").getValue(String.class));
             rsvp.putExtra("startTime", data.get(position).child("startTime").getValue(String.class));
             rsvp.putExtra("endTime", data.get(position).child("endTime").getValue(String.class));
             rsvp.putExtra("host", data.get(position).child("host").getValue(String.class));
