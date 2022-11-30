@@ -12,7 +12,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="990cb897-73c9-4ef9-8177-697676a44775" name="Changes" comment="Removing unnecessary code from student and teacher.">
+    <list default="true" id="990cb897-73c9-4ef9-8177-697676a44775" name="Changes" comment="Implementing event conflict functionality.">
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
@@ -276,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668563422297</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Implementing event conflict functionality.">
+      <created>1669783715581</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1669783715581</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -304,6 +311,7 @@
     <MESSAGE value="Adding RSVP statuses to rsvp page and updating user change rsvp functionality" />
     <MESSAGE value="Adding basic show attendees list functionality for each event" />
     <MESSAGE value="Adding remove attendees functionality and updating recyclerview for attendees lists" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding remove attendees functionality and updating recyclerview for attendees lists" />
+    <MESSAGE value="Implementing event conflict functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementing event conflict functionality." />
   </component>
 </project>
