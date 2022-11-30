@@ -3,6 +3,8 @@
 xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
+android:layout_marginBottom="20dp"
+android:layout_marginTop="30dp"
 android:background="@color/dark_blue"
 android:orientation="vertical">
 
@@ -21,6 +23,14 @@ android:orientation="vertical">
         android:layout_height="match_parent"
         android:background="@color/new_blue"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/alert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/design_default_color_error"
+            android:text="Time Conflict"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"

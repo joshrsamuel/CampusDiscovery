@@ -30,6 +30,7 @@ public class rsvpEvent extends AppCompatActivity{
     TextView title;
     TextView location;
     TextView time;
+    TextView date;
     TextView description;
     TextView host;
     TextView attendees;
@@ -66,6 +67,7 @@ public class rsvpEvent extends AppCompatActivity{
         title = (TextView) findViewById(R.id.titleRSVP);
         location = (TextView) findViewById(R.id.locationRSVP);
         time = (TextView) findViewById(R.id.timeRSVP);
+        date = (TextView) findViewById(R.id.dateRSVP);
         description = (TextView) findViewById(R.id.descriptionRSVP);
         host = (TextView) findViewById(R.id.hostRSVP);
         attendees = (TextView) findViewById(R.id.numAttendees);
@@ -75,7 +77,10 @@ public class rsvpEvent extends AppCompatActivity{
         String titleString = getIntent().getStringExtra("title");
         String descriptionString = getIntent().getStringExtra("description");
         String locationString = getIntent().getStringExtra("location");
-        String timeString = getIntent().getStringExtra("time");
+        String startTimeString = getIntent().getStringExtra("startTime");
+        String endTimeString = getIntent().getStringExtra("endTime");
+        String timeString = startTimeString + " - " + endTimeString;
+        String dateString = getIntent().getStringExtra("date");
         String hostString = getIntent().getStringExtra("host");
         String attendeesString = "" + getIntent().getLongExtra("attendees", 0);
 
@@ -98,6 +103,7 @@ public class rsvpEvent extends AppCompatActivity{
         title.setText(titleString);
         location.setText(locationString);
         time.setText(timeString);
+        date.setText(dateString);
         description.setText(descriptionString);
         attendees.setText(attendeesString);
         capString.setText(String.valueOf(getIntent().getIntExtra("capacity", 10)));
@@ -139,9 +145,15 @@ public class rsvpEvent extends AppCompatActivity{
                         eventDatabase.child(titleString).child("attendees").child(status).child(currUser.getUid()).removeValue();
                     }
                     eventDatabase.child(titleString).child("attendees").child(rsvpStatus[0]).child(currUser.getUid()).setValue(username[0]);
+                    if (rsvpStatus[0].equals("Will Attend")) {
+                        userDatabase.child(currUser.getUid()).child("events").child(titleString).setValue(titleString);
+                    } else {
+                        userDatabase.child(currUser.getUid()).child("events").child(titleString).removeValue();
+                    }
                     Toast.makeText(rsvpEvent.this, "Successfully changed RSVP status", Toast.LENGTH_SHORT).show();
             }
         });
+
 
         returnToDashBtn = (Button) findViewById(R.id.RSVPreturn);
         returnToDashBtn.setOnClickListener(new View.OnClickListener() {
@@ -158,11 +170,14 @@ public class rsvpEvent extends AppCompatActivity{
     }
     private void doReturn(String caller) {
         switch (caller) {
+            case "MyEvents":
+                startActivity(new Intent(rsvpEvent.this, MyEvents.class));
+                break;
             case "student":
                 startActivity(new Intent(rsvpEvent.this, student.class));
                 break;
             case "teacher":
-                startActivity(new Intent(rsvpEvent.this, teacher.class));
+                startActivity(new Intent(rsvpEvent.this, student.class));
                 break;
         }
     }
