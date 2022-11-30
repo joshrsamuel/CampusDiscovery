@@ -287,5 +287,4 @@ tools:ignore="NotSibling" />
         android:src="@drawable/filtericon"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

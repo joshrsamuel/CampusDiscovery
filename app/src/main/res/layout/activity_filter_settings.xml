@@ -52,7 +52,7 @@
         android:textSize="45sp"
         android:fontFamily="sans-serif-black"
         android:textStyle="bold"
-        android:textColor="@color/white"></TextView>
+        android:textColor="@color/white"/>
 
     <RadioGroup
         android:id="@+id/filterGroup"
@@ -114,7 +114,7 @@
         android:fontFamily="sans-serif-black"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:visibility="invisible"></TextView>
+        android:visibility="invisible"/>
 
     <Spinner
         android:id="@+id/filterSpinner"
@@ -126,7 +126,7 @@
         android:fontFamily="sans-serif-medium"
         app:layout_constraintTop_toBottomOf="@id/filterSubcat"
         android:spinnerMode="dropdown"
-        android:visibility="invisible"></Spinner>
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/doneBtn"
