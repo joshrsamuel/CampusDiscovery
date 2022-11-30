@@ -145,9 +145,15 @@ public class rsvpEvent extends AppCompatActivity{
                         eventDatabase.child(titleString).child("attendees").child(status).child(currUser.getUid()).removeValue();
                     }
                     eventDatabase.child(titleString).child("attendees").child(rsvpStatus[0]).child(currUser.getUid()).setValue(username[0]);
+                    if (rsvpStatus[0].equals("Will Attend")) {
+                        userDatabase.child(currUser.getUid()).child("events").child(titleString).setValue(titleString);
+                    } else {
+                        userDatabase.child(currUser.getUid()).child("events").child(titleString).removeValue();
+                    }
                     Toast.makeText(rsvpEvent.this, "Successfully changed RSVP status", Toast.LENGTH_SHORT).show();
             }
         });
+
 
         returnToDashBtn = (Button) findViewById(R.id.RSVPreturn);
         returnToDashBtn.setOnClickListener(new View.OnClickListener() {

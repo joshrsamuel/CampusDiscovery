@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +36,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
     private userInfo currUserInfo;
     private Button nextBtn;
     private Button backBtn;
+    private Button myEventBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +51,12 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                 currUserInfo = snapshot.getValue(userInfo.class);
                 if (currUserInfo != null) {
                     if (currUserInfo.getUserType().equals("Admin")) {
-                        dashboardHeader = (TextView)  findViewById(R.id.eventHeader);
+                        dashboardHeader = (TextView)  findViewById(R.id.pageHeader);
                         dashboardHeader.setText("Admin Dashboard");
                         FloatingActionButton tempBtn = (FloatingActionButton) findViewById(R.id.studentCreate);
                         tempBtn.setVisibility(View.GONE);
                     } else if (currUserInfo.getUserType().equals("Teacher")) {
-                        dashboardHeader = (TextView) findViewById(R.id.eventHeader);
+                        dashboardHeader = (TextView) findViewById(R.id.pageHeader);
                         dashboardHeader.setText("Teacher Dashboard");
                     }
                 }
@@ -74,14 +74,14 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                 startActivity(new Intent(student.this, MainActivity.class));
             }
         });
-
-        eventMapBtn = (FloatingActionButton) findViewById(R.id.eventMap);
-        eventMapBtn.setOnClickListener(new View.OnClickListener() {
+      
+        myEventBtn = (Button) findViewById(R.id.MyEventsBut);
+        myEventBtn.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(student.this, showEventMap.class));
+                startActivity(new Intent(student.this, MyEvents.class));
             }
-        });
+        }));
 
         createEventBtn = (FloatingActionButton) findViewById(R.id.studentCreate);
         createEventBtn.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +123,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                     }
                 }
 
-                RecyclerView recyclerView = findViewById(R.id.recycleviewstudent);
+                RecyclerView recyclerView = findViewById(R.id.recycleviewEvents);
                 RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(0).getData(), context, student.this);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -137,7 +137,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                             Toast.makeText(student.this, "No next page.", Toast.LENGTH_SHORT).show();
                         } else {
                             currPage[0] += 1;
-                            RecyclerView recyclerView = findViewById(R.id.recycleviewstudent);
+                            RecyclerView recyclerView = findViewById(R.id.recycleviewEvents);
                             RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(currPage[0]).getData(), context, student.this);
                             recyclerView.setAdapter(adapter);
                             recyclerView.setLayoutManager(new LinearLayoutManager(student.this));
@@ -152,7 +152,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                             Toast.makeText(student.this, "No previous page.", Toast.LENGTH_SHORT).show();
                         } else {
                             currPage[0] -= 1;
-                            RecyclerView recyclerView = findViewById(R.id.recycleviewstudent);
+                            RecyclerView recyclerView = findViewById(R.id.recycleviewEvents);
                             RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(currPage[0]).getData(), context, student.this);
                             recyclerView.setAdapter(adapter);
                             recyclerView.setLayoutManager(new LinearLayoutManager(student.this));

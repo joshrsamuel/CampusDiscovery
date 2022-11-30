@@ -24,7 +24,7 @@
             android:padding="25dp">
 
             <TextView
-                android:id="@+id/eventHeader"
+                android:id="@+id/pageHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
@@ -86,7 +86,7 @@
         app:tint="@null" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleviewstudent"
+        android:id="@+id/recycleviewEvents"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -105,7 +105,7 @@
         android:fontFamily="sans-serif-black"
         android:text="Next"
         android:textColor="@color/dark_blue"
-        app:layout_constraintBottom_toBottomOf="@+id/recycleviewstudent"
+        app:layout_constraintBottom_toBottomOf="@+id/recycleviewEvents"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,8 +124,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="@+id/recycleviewstudent"
+        app:layout_constraintStart_toStartOf="@+id/recycleviewEvents"
         app:layout_constraintTop_toBottomOf="@+id/appbar"
         app:layout_constraintVertical_bias="0.992" />
+
+    <Button
+        android:id="@+id/MyEventsBut"
+        android:layout_width="125dp"
+        android:layout_height="37dp"
+        android:backgroundTint="@color/bright_blue"
+        android:clickable="true"
+        android:fontFamily="sans-serif-black"
+        android:text="My Events"
+        android:textColor="@color/dark_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/recycleviewEvents"
+        app:layout_constraintTop_toBottomOf="@+id/appbar"
+        app:layout_constraintVertical_bias="0.979" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
