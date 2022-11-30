@@ -68,7 +68,10 @@ public class welcome extends AppCompatActivity {
         delay.schedule(new TimerTask() {
             @Override
             public void run() {
-                        startActivity(new Intent(welcome.this, student.class));
+                Intent dashboard = new Intent(welcome.this, student.class);
+                dashboard.putExtra("category", "Default");
+                dashboard.putExtra("subcategory", "Default");
+                        startActivity(dashboard);
             }
         }, 1500);
     }
