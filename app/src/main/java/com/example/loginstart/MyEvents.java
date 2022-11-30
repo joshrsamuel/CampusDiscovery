@@ -53,9 +53,9 @@ public class MyEvents extends AppCompatActivity implements RecyclerViewInterface
                 Set<String> eventData = new HashSet<>();
                 for (DataSnapshot child : snapshot.getChildren()) {
                     eventData.add(child.getValue(String.class));
-                    System.out.println("data: " + child.getValue(String.class));
+                    //System.out.println("data: " + child.getValue(String.class));
                 }
-                System.out.println("set: " + eventData);
+               // System.out.println("set: " + eventData);
                 final int[] currPage = new int[1];
                 ValueEventListener postListener = new ValueEventListener() {
                     @Override
@@ -64,7 +64,7 @@ public class MyEvents extends AppCompatActivity implements RecyclerViewInterface
                         ArrayList<DataSnapshot> childData = new ArrayList<>();
                         currPage[0] = 0;
                         for (DataSnapshot child : snapshot.getChildren()) {
-                            System.out.println(child.child("title").getValue(String.class));
+                            //System.out.println(child.child("title").getValue(String.class));
                             if (eventData.contains(child.child("title").getValue(String.class))) {
                                 childData.add(child);
                             }
@@ -92,7 +92,7 @@ public class MyEvents extends AppCompatActivity implements RecyclerViewInterface
                         }
 
                         RecyclerView recyclerView = findViewById(R.id.recycleviewEvents);
-                        RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(0).getData(), context, MyEvents.this);
+                        RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(0).getData(), context, MyEvents.this, true);
                         recyclerView.setAdapter(adapter);
                         recyclerView.setLayoutManager(new LinearLayoutManager(context));
                         Toast.makeText(MyEvents.this, "Events successfully loaded.", Toast.LENGTH_SHORT).show();
@@ -106,7 +106,7 @@ public class MyEvents extends AppCompatActivity implements RecyclerViewInterface
                                 } else {
                                     currPage[0] += 1;
                                     RecyclerView recyclerView = findViewById(R.id.recycleviewEvents);
-                                    RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(currPage[0]).getData(), context, MyEvents.this);
+                                    RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(currPage[0]).getData(), context, MyEvents.this, true);
                                     recyclerView.setAdapter(adapter);
                                     recyclerView.setLayoutManager(new LinearLayoutManager(MyEvents.this));
                                 }
@@ -121,7 +121,7 @@ public class MyEvents extends AppCompatActivity implements RecyclerViewInterface
                                 } else {
                                     currPage[0] -= 1;
                                     RecyclerView recyclerView = findViewById(R.id.recycleviewEvents);
-                                    RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(currPage[0]).getData(), context, MyEvents.this);
+                                    RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(currPage[0]).getData(), context, MyEvents.this, true);
                                     recyclerView.setAdapter(adapter);
                                     recyclerView.setLayoutManager(new LinearLayoutManager(MyEvents.this));
                                 }

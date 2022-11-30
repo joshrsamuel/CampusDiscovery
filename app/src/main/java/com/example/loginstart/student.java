@@ -206,7 +206,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                 }
 
                 RecyclerView recyclerView = findViewById(R.id.recycleviewEvents);
-                RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(0).getData(), context, student.this);
+                RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(0).getData(), context, student.this, false);
                 recyclerView.setAdapter(adapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
                 Toast.makeText(student.this, "Events successfully loaded.", Toast.LENGTH_SHORT).show();
@@ -220,7 +220,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                         } else {
                             currPage[0] += 1;
                             RecyclerView recyclerView = findViewById(R.id.recycleviewEvents);
-                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(currPage[0]).getData(), context, student.this);
+                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(currPage[0]).getData(), context, student.this, false);
                             recyclerView.setAdapter(adapter);
                             recyclerView.setLayoutManager(new LinearLayoutManager(student.this));
                         }
@@ -235,7 +235,7 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                         } else {
                             currPage[0] -= 1;
                             RecyclerView recyclerView = findViewById(R.id.recycleviewEvents);
-                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(currPage[0]).getData(), context, student.this);
+                            RecyclerViewAdapter adapter = new RecyclerViewAdapter(pages.get(currPage[0]).getData(), context, student.this, false);
                             recyclerView.setAdapter(adapter);
                             recyclerView.setLayoutManager(new LinearLayoutManager(student.this));
                         }
