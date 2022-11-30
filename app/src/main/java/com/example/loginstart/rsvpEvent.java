@@ -170,11 +170,14 @@ public class rsvpEvent extends AppCompatActivity{
     }
     private void doReturn(String caller) {
         switch (caller) {
+            case "MyEvents":
+                startActivity(new Intent(rsvpEvent.this, MyEvents.class));
+                break;
             case "student":
                 startActivity(new Intent(rsvpEvent.this, student.class));
                 break;
             case "teacher":
-                startActivity(new Intent(rsvpEvent.this, teacher.class));
+                startActivity(new Intent(rsvpEvent.this, student.class));
                 break;
         }
     }

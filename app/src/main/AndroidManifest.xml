@@ -16,6 +16,20 @@
         android:theme="@style/Theme.LogInStart"
         tools:targetApi="31">
         <activity
+            android:name=".filterSettings"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".eventMap"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".addInvitees"
             android:exported="false">
             <meta-data
@@ -79,7 +93,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".showEventMap"
+            android:name=".MyEvents"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -112,7 +126,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name="com.example.loginstart.MyEvents" />
     </application>
 
 </manifest>

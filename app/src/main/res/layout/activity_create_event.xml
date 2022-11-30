@@ -97,19 +97,6 @@
             android:textColorHint="@color/new_blue"/>
 
         <EditText
-            android:id="@+id/location"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="10sp"
-            android:backgroundTint="@color/new_blue"
-            android:fontFamily="sans-serif-medium"
-            android:gravity="center"
-            android:hint="Location"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textColorHint="@color/new_blue"/>
-
-        <EditText
             android:id="@+id/capacity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -135,6 +122,30 @@
             android:text="Date"
             android:textColor="@color/white"
             android:textColorHint="@color/new_blue" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10sp"
+            android:backgroundTint="@color/new_blue"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="Select Location Below"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/new_blue"></TextView>
+        <Spinner
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="5sp"
+            android:background="@android:drawable/btn_dropdown"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:spinnerMode="dropdown"></Spinner>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -169,6 +180,7 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/new_blue" />
         </LinearLayout>
+
 
         <Switch
             android:id="@+id/invite"
