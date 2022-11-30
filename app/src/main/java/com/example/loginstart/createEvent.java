@@ -1,10 +1,12 @@
 package com.example.loginstart;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -37,14 +39,14 @@ public class createEvent extends AppCompatActivity {
     private EditText location;
     private Button startTime;
     private Button endTime;
+    private Button date;
     private Calendar calStartTime = Calendar.getInstance();
     private Calendar calEndTime = Calendar.getInstance();
-    private boolean valid = true;
     private EditText capacity;
     private TextView invitePpl;
     private Switch inviteMode;
     private int startHour, startMinute, endHour, endMinute;
-    private String txtTitle, txtEventDescription, txtLocation, txtStartTime, txtEndTime;
+    private String txtTitle, txtEventDescription, txtLocation, txtStartTime, txtEndTime, txtDate;
     private Button createBtn, yesBtn, laterBtn;
     private LinearLayout invBtns;
     private int eventCap;
@@ -65,6 +67,7 @@ public class createEvent extends AppCompatActivity {
         location = (EditText) findViewById(R.id.location);
         startTime = (Button) findViewById(R.id.startTime);
         endTime = (Button) findViewById(R.id.endTime);
+        date = (Button) findViewById(R.id.date);
         capacity = (EditText) findViewById(R.id.capacity);
         inviteMode = (Switch) findViewById(R.id.invite);
         invBtns = (LinearLayout) findViewById(R.id.invButtons);
@@ -96,6 +99,7 @@ public class createEvent extends AppCompatActivity {
                 txtLocation = location.getText().toString().trim();
                 txtStartTime = startTime.getText().toString();
                 txtEndTime = endTime.getText().toString();
+                txtDate = date.getText().toString();
 
                 eventCap = (int) Integer.valueOf(capacity.getText().toString().trim());
                 onlyInv = inviteMode.isChecked();
@@ -112,7 +116,7 @@ public class createEvent extends AppCompatActivity {
                         Toast.makeText(createEvent.this, "ERROR", Toast.LENGTH_LONG).show();
                     }
                 });
-                created = new Event(txtTitle, currUser.getUid(), txtEventDescription, txtLocation, txtStartTime, txtEndTime, eventCap, onlyInv);
+                created = new Event(txtTitle, currUser.getUid(), txtEventDescription, txtLocation, txtDate, txtStartTime, txtEndTime, eventCap, onlyInv);
                 mirajDatabase = FirebaseDatabase.getInstance("https://campusdiscovery-d2e9f-default-rtdb.firebaseio.com/").getReference("Events");
                 mirajDatabase.child(txtTitle).setValue(created).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -164,7 +168,7 @@ public class createEvent extends AppCompatActivity {
                     startActivity(new Intent(createEvent.this, student.class));
                     break;
                 case "teacher":
-                    startActivity(new Intent(createEvent.this, teacher.class));
+                    startActivity(new Intent(createEvent.this, student.class));
                     break;
             }
         }
@@ -260,6 +264,86 @@ public class createEvent extends AppCompatActivity {
         timePickerDialog.setTitle("Select Time");
         timePickerDialog.show();
     }
+
+    public void pickDate(View view) {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+
+                Calendar temp = Calendar.getInstance();
+                temp.set(Calendar.YEAR, year);
+                temp.set(Calendar.MONTH, month);
+                temp.set(Calendar.DAY_OF_MONTH, day);
+
+                Calendar today = Calendar.getInstance();
+
+                if (temp.before(today)) {
+                    Toast.makeText(createEvent.this, "Cannot create Past Events", Toast.LENGTH_SHORT).show();
+                } else {
+                    month += 1;
+                    String dateString = toDateString(day, month, year);
+                    date.setText(dateString);
+                }
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        datePickerDialog.show();
+    }
+
+    private String toDateString(int day, int month, int year) {
+        String date = "";
+
+        switch (month) {
+            case 1:
+                date += "JAN";
+                break;
+            case 2:
+                date += "FEB";
+                break;
+            case 3:
+                date += "MAR";
+                break;
+            case 4:
+                date += "APR";
+                break;
+            case 5:
+                date += "MAY";
+                break;
+            case 6:
+                date += "JUN";
+                break;
+            case 7:
+                date += "JUL";
+                break;
+            case 8:
+                date += "AUG";
+                break;
+            case 9:
+                date += "SEP";
+                break;
+            case 10:
+                date += "OCT";
+                break;
+            case 11:
+                date += "NOV";
+                break;
+            case 12:
+                date += "DEC";
+        }
+
+        date += " " + day + " " + year;
+
+        return date;
+    }
+
     private boolean isEqual(Calendar first, Calendar second) {
         if (first.get(Calendar.AM_PM) == second.get(Calendar.AM_PM)) {
             if (first.get(Calendar.HOUR) == second.get(Calendar.HOUR)) {

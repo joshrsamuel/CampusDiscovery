@@ -50,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.MyViewHolder holder, int position) {
         holder.title.setText(data.get(position).child("title").getValue(String.class));
-        holder.date.setText(data.get(position).child("time").getValue(String.class));
+        holder.date.setText(data.get(position).child("date").getValue(String.class));
         holder.location.setText(data.get(position).child("location").getValue(String.class));
         holder.description.setText(data.get(position).child("eventDescription").getValue(String.class));
         holder.editorId = data.get(position).child("host").getValue(String.class);
