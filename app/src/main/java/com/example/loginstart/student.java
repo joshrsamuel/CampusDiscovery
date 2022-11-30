@@ -9,7 +9,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,18 +32,60 @@ import java.util.List;
 public class student extends AppCompatActivity implements RecyclerViewInterface {
     private Button exitBtn;
     private FloatingActionButton createEventBtn;
+    private FloatingActionButton mapBtn;
     private DatabaseReference mirajDatabase;
     private FirebaseUser currUser;
     private TextView dashboardHeader;
     private userInfo currUserInfo;
     private Button nextBtn;
     private Button backBtn;
-
+    private String category;
+    private String subcategory;
+    private FloatingActionButton filter;
+    private ArrayAdapter<String> filterAdapter;
+    private String[] filterOpts = new String[4];
+    private String[] locationOpts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Context context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
+        category = getIntent().getStringExtra("category");
+        subcategory = getIntent().getStringExtra("subcategory");
+        if (category == null) {
+            category = "Default";
+            subcategory = "Default";
+        }
+        /*//filter code
+        filter = (Spinner) findViewById(R.id.filter);
+        filterOpts[0] = "Default"; filterOpts[1] = "Location"; filterOpts[2] = "Date"; filterOpts[3] = "Host";
+        locationOpts = new String[]{"West Dorms", "CRC", "CRC Field", "Student Center",
+                "Tech Green", "CULC", "Klaus", "CoC", "East Dorms", "NAve", "Bobby Dodd Stadium", "McCamish Pavilion", "Tech Square"};
+        filterAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, filterOpts);
+        filter.setAdapter(filterAdapter);
+        filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch(view.toString().trim()) {
+                    case 0:
+                        break;
+                    case 1:
+                        filterAdapter = new ArrayAdapter<>(student.this, android.R.layout.simple_spinner_dropdown_item, locationOpts);
+                        filter.setAdapter(filterAdapter);
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                return;
+            }
+        });
+        //end filter code*/
         mirajDatabase = FirebaseDatabase.getInstance().getReference("UserInfo");
         currUser = FirebaseAuth.getInstance().getCurrentUser();
         mirajDatabase.child(currUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -72,6 +117,25 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                 startActivity(new Intent(student.this, MainActivity.class));
             }
         });
+        mapBtn = (FloatingActionButton) findViewById(R.id.studentFilter);
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toMap = new Intent(student.this, eventMap.class);
+                toMap.putExtra("class", "student");
+                toMap.putExtra("category", category);
+                toMap.putExtra("subcategory", subcategory);
+                startActivity(toMap);
+            }
+        });
+
+        filter = (FloatingActionButton) findViewById(R.id.filter);
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(student.this, filterSettings.class).putExtra("class", "student"));
+            }
+        });
 
         createEventBtn = (FloatingActionButton) findViewById(R.id.studentCreate);
         createEventBtn.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +153,24 @@ public class student extends AppCompatActivity implements RecyclerViewInterface 
                 ArrayList<DataSnapshot> childData = new ArrayList<>();
                 currPage[0] = 0;
                 for (DataSnapshot child : snapshot.getChildren()) {
-                    childData.add(child);
+                    switch (category) {
+                        case "Default":
+                            childData.add(child);
+                        case "Location":
+                            if (subcategory.equals(child.child("location").getValue(String.class).toString().trim())) {
+                                childData.add(child);
+                            }
+                        case "Date":
+                            if (child.child("date").getValue(String.class) != null && subcategory.equals(child.child("date").getValue(String.class).trim())) {
+                                childData.add(child);
+                            }
+                        case "Host Type":
+                            mirajDatabase = FirebaseDatabase.getInstance().getReference("UserInfo");
+                            String userType = mirajDatabase.child(child.child("host").getValue().toString().trim()).child("userType").toString();
+                            if (subcategory.equals(userType)) {
+                                childData.add(child);
+                            }
+                    }
                 }
                 int numPages;
                 if (childData.size() % 10 == 0) {

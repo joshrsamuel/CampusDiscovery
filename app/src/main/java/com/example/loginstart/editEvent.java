@@ -3,8 +3,10 @@ package com.example.loginstart;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Button;
@@ -24,7 +26,7 @@ import java.util.Map;
 public class editEvent extends AppCompatActivity {
     EditText title;
     EditText eventDescription;
-    EditText location;
+    Spinner location;
     EditText time;
     EditText capacity;
     Button update;
@@ -49,6 +51,7 @@ public class editEvent extends AppCompatActivity {
         update.setText("Update");
         inviteOnly = (Switch) findViewById(R.id.invite);
         inviteOnly.setVisibility(View.INVISIBLE);
+        String[] locations;
 
         String titleString = getIntent().getStringExtra("title");
         String descriptionString = getIntent().getStringExtra("description");
@@ -60,7 +63,11 @@ public class editEvent extends AppCompatActivity {
 
         title = (EditText) findViewById(R.id.title);
         eventDescription = (EditText) findViewById(R.id.eventDescription);
-        location = (EditText) findViewById(R.id.location);
+        location = (Spinner) findViewById(R.id.location);
+        locations = new String[]{"West Dorms", "CRC", "CRC Field", "Student Center",
+                "Tech Green", "CULC", "Klaus", "CoC", "East Dorms", "NAve", "Bobby Dodd Stadium", "McCamish Pavilion", "Tech Square"};
+        ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, locations);
+        location.setAdapter(locationAdapter);
         time = (EditText) findViewById(R.id.time);
         capacity = (EditText) findViewById(R.id.capacity);
         invBtns = (LinearLayout) findViewById(R.id.invButtons);
@@ -68,9 +75,14 @@ public class editEvent extends AppCompatActivity {
         laterBtn = (Button) findViewById(R.id.laterBtn);
         invitePpl = (TextView) findViewById(R.id.invPplText);
 
+        int selecIdx = 0;
+        while (!locationString.equals(locations[selecIdx])) {
+            selecIdx++;
+        }
+
         title.setText(titleString);
         eventDescription.setText(descriptionString);
-        location.setText(locationString);
+        location.setSelection(selecIdx);
         time.setText(timeString);
         capacity.setText(String.valueOf(capX));
         update.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +90,7 @@ public class editEvent extends AppCompatActivity {
             public void onClick(View view) {
                 txtTitle = title.getText().toString().trim();
                 txtEventDescription = eventDescription.getText().toString().trim();
-                txtLocation = location.getText().toString().trim();
+                txtLocation = location.getSelectedItem().toString().trim();
                 txtTime = time.getText().toString().trim();
                 capNum = Integer.valueOf(capacity.getText().toString().trim());
 

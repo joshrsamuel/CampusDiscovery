@@ -3,9 +3,11 @@ package com.example.loginstart;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 public class createEvent extends AppCompatActivity {
     private EditText title;
     private EditText eventDescription;
-    private EditText location;
+    private Spinner location;
     private EditText time;
     private EditText capacity;
     private TextView invitePpl;
@@ -42,15 +44,19 @@ public class createEvent extends AppCompatActivity {
     private FirebaseUser currUser;
     private DatabaseReference mirajDatabase;
     private userInfo currUserInfo;
+    String[] locations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
-
         title = (EditText) findViewById(R.id.title);
         eventDescription = (EditText) findViewById(R.id.eventDescription);
-        location = (EditText) findViewById(R.id.location);
+        location = (Spinner) findViewById(R.id.location);
+        locations = new String[]{"West Dorms", "CRC", "CRC Field", "Student Center",
+        "Tech Green", "CULC", "Klaus", "CoC", "East Dorms", "NAve", "Bobby Dodd Stadium", "McCamish Pavilion", "Tech Square"};
+        ArrayAdapter<String> locationAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, locations);
+        location.setAdapter(locationAdapter);
         time = (EditText) findViewById(R.id.time);
         capacity = (EditText) findViewById(R.id.capacity);
         inviteMode = (Switch) findViewById(R.id.invite);
@@ -75,7 +81,7 @@ public class createEvent extends AppCompatActivity {
                 System.out.println("Create registered");
                 txtTitle = title.getText().toString().trim();
                 txtEventDescription = eventDescription.getText().toString().trim();
-                txtLocation = location.getText().toString().trim();
+                txtLocation = location.getSelectedItem().toString().trim();
                 txtTime = time.getText().toString().trim();
                 eventCap = (int) Integer.valueOf(capacity.getText().toString().trim());
                 onlyInv = inviteMode.isChecked();
