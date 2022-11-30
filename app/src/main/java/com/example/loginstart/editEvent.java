@@ -180,6 +180,9 @@ public class editEvent extends AppCompatActivity {
             });
         } else {
             switch (caller) {
+                case "MyEvents":
+                    startActivity(new Intent(editEvent.this, MyEvents.class));
+                    break;
                 case "student":
                     startActivity(new Intent(editEvent.this, student.class));
                     break;

@@ -51,7 +51,7 @@
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/eventHeader"
+        app:layout_constraintRight_toLeftOf="@id/pageHeader"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="NotSibling" />
 
@@ -64,7 +64,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/recycleviewstudent"
+        app:layout_constraintStart_toStartOf="@+id/recycleviewEvents"
         app:layout_constraintTop_toBottomOf="@+id/appbar"
         app:layout_constraintVertical_bias="0.01"
         app:srcCompat="@android:drawable/ic_input_add" />
