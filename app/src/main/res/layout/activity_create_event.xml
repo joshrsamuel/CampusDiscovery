@@ -135,7 +135,7 @@
             android:text="Select Location Below"
             android:textSize="20dp"
             android:textAlignment="center"
-            android:textColor="@color/new_blue"></TextView>
+            android:textColor="@color/new_blue"/>
         <Spinner
             android:id="@+id/location"
             android:layout_width="match_parent"
@@ -144,7 +144,7 @@
             android:background="@android:drawable/btn_dropdown"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
-            android:spinnerMode="dropdown"></Spinner>
+            android:spinnerMode="dropdown"/>
 
         <LinearLayout
             android:layout_width="match_parent"
