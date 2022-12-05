@@ -167,17 +167,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                 }
                             }
                             System.out.println("MyEvents: " + childData);
+                            String event1 = data.get(position).child("title").getValue(String.class);
                             Calendar start1 = militaryTimeConverter(data.get(position).child("startTime").getValue(String.class));
                             Calendar end1 = militaryTimeConverter(data.get(position).child("endTime").getValue(String.class));
                             String date1 = data.get(position).child("date").getValue(String.class);
                             for (DataSnapshot event : childData) {
+                                String event2 = event.child("title").getValue(String.class);
                                 Calendar start2 = militaryTimeConverter(event.child("startTime").getValue(String.class));
                                 Calendar end2 = militaryTimeConverter(event.child("endTime").getValue(String.class));
                                 String date2 = event.child("date").getValue(String.class);
                                 System.out.println("start: " + start2);
                                 System.out.println("end: " + end2);
                                 System.out.println("Conflict: " + isConflct(start1, end1, start2, end2));
-                                if (isConflct(start1, end1, start2, end2) && date1.equals(date2)) {
+                                if (isConflct(start1, end1, start2, end2) && date1.equals(date2) && !event1.equals(event2)) {
                                     holder.alertBtn.setVisibility(View.VISIBLE);
                                 }
                             }
@@ -257,6 +259,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
 
         if (nest.before(oest) && neet.after(oeet)) {
+            return true;
+        }
+        if (nest.equals(oest)) {
+            return true;
+        }
+        if (neet.equals(oeet)) {
             return true;
         }
 
